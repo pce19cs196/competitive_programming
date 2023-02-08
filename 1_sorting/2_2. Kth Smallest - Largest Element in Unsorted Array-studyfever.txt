@@ -1,4 +1,5 @@
-2. Kth Smallest - Largest Element in Unsorted Array-studyfever
+https://leetcode.com/problems/kth-largest-element-in-an-array
+Kth Smallest - Largest Element in Unsorted Array-studyfever
 
 Method_1  : Using min - heap
 Time : o(k) + o(n*logk)
@@ -14,7 +15,36 @@ class Solution:
         return heapstruct[0]
 
 
-Method_2  : Using modified quick sort
+Method_2  : Using modified quick sort ==> dropping one side of partiton
 
 Best case : T(n/2) + o(n) ==>o(n )             =>randomized quick sort
 worst case  :T(n-1) + o(n)  == > o(n^2)
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        i = -1
+        j = 0
+        pivot = len(nums) - 1
+        k= len(nums) - k +1
+
+        while(True):
+            while( j<pivot ):
+                if(nums[pivot] >nums[j]):
+                   i+=1
+                   nums[i] , nums[j] = nums[j] , nums[i]
+                j+=1
+            i+=1
+            nums[i] , nums[j] = nums[j] , nums[i]
+            # print(nums)
+            if(i+1==k):
+                return nums[i]   
+            else:
+                if(i+1<k):
+                    j= i+1
+                else:
+                    pivot = i-1
+                    i=-1
+                    j=0
+
+
+   
