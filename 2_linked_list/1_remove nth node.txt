@@ -35,6 +35,52 @@ class Solution:
         return head
 
 
-Approach2 :Two pointer approach for maintaining the distance and one curr pointer which points to the current node.
+Approach2 :Two pointer approach for maintaining the distance.Only one iteration is required.
+           There are two edge test case here. First one being if the list has single node. Second one being if the distance between the nodes is 1. Since, we are  
+           maintaining (n-1) distance. In such case , we have remove the last node. So, extra steps required
+           
+           Time: o(n)
+           space: o(1)
+           
          
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+
+        if(head.next ==None):
+            head = None
+            return head
+        i = head
+        j = head
+        curr = head
+        dist = n-1
+        while(dist>0):
+            j = j.next
+            dist-=1
+        if(i==j):
+            while(i.next.next !=None):
+                i= i.next
+                j=j.next
+            i.next =None
+            return head
+
+            
+        while(j!= None and j.next != None ):
+            j =j.next
+            i = i.next
+        
+        i.val = i.next.val
+        i.next = i.next.next
+    
+       
+        
+        return head
+         
+
 
