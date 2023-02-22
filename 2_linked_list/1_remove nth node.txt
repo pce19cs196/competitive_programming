@@ -1,0 +1,40 @@
+https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/
+
+Approach1 : Count total number nodes in the list and then delete it 
+Time : o(n) + o(n)
+space: o(1)
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        temp = head
+        count = 0
+        while(temp!=None):
+            temp = temp.next
+            count += 1
+        to_delete = count - n
+        temp = head
+        
+        if(to_delete == 0 and count == 1):
+            head = None
+        elif(to_delete == 0):
+            head.val = head.next.val
+            head.next = head.next.next
+        else:
+            while(to_delete != 1):
+                temp = temp.next
+                to_delete -=1
+            
+            temp.next = temp.next.next
+
+        return head
+
+
+Approach2 :Two pointer approach for maintaining the distance and one curr pointer which points to the current node.
+         
+
