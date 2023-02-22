@@ -1,0 +1,32 @@
+https://leetcode.com/problems/swapping-nodes-in-a-linked-list/
+
+
+Approach1 : Maintain count to count the nodes present in the list
+            i ,j pointers point to the required node in the list whose values needs to be swapped
+            Time : o(n) , space : o(1)
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def swapNodes(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        temp = head
+        count = 0
+        while(temp!=None):
+            temp = temp.next
+            count += 1
+        i = head
+        j = head
+        begin = k -1
+        while(begin!=0):
+            i= i.next
+            begin -=1
+        end = count - k 
+        while(end!=0):
+            j= j.next
+            end -=1
+        i.val , j.val = j.val , i.val
+        return head
