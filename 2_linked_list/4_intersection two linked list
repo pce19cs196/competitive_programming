@@ -1,10 +1,67 @@
 https://leetcode.com/problems/intersection-of-two-linked-lists/description/
 
 Approach1 : set
+Approach2 : Find length of both the lists . Find the diffenrence between the lists . Find the larger linked list and increment the list by the difference steps . 
+            Then keep on incrementing the list until the address matches
+            
+            Time : o(m+n)
+            space : o(1)
+ 
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        temp = headA
+        countA = 0
+        countB = 0
+        while(temp):
+            temp = temp.next
+            countA+=1
+        temp = headB
+
+        while(temp):
+            temp = temp.next
+            countB+=1
+
+        if(countA>countB):
+            diff = countA- countB
+            while(diff!=0):
+                headA = headA.next
+                diff -=1
+        else:
+            diff = countB- countA
+            while(diff!=0):
+                headB = headB.next
+                diff -=1
+        while headA and headB:
+            if(headA == headB):
+                return headA
+            else:
+                headA , headB = headA.next , headB.next
+        return None
 
 
 
-approach2 : Make one linked list as circular and use floyd cycle detection algorithm to find the intersection point
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+approach3 : Make one linked list as circular and use floyd cycle detection algorithm to find the intersection point
 
 # Definition for singly-linked list.
 # class ListNode:
