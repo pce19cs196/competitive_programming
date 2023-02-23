@@ -1,0 +1,78 @@
+https://leetcode.com/problems/palindrome-linked-list/description/
+
+Approach1 : use stack to store the numbers.Then , pop each of these numbers and check if from the beginning position if it matched
+           Time: o(n) , space : o(n)
+
+Approach2 : calcute length of the list.  find the midlle element . Then reverse the rightmost side of the middle element. Then match.
+          Time: o(n) , space : o(1)
+
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        if(head.next == None): return True
+
+
+        count =0 
+        temp = head
+        while(temp):
+            temp = temp.next
+            count +=1
+        odd_check = count
+        count = count//2
+       
+        left = head
+        right = head
+        while(count >1):
+            left = left.next
+            count -=1
+        if(odd_check%2!=0 ):
+            right=left.next.next
+        else:
+            right = left.next
+        
+        # print(right)
+        prev = None
+        current = right
+        while(current is not None):
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+        right = prev
+        # print(head)
+        # print(right)
+
+        while(head and right):
+            if(head.val != right.val):
+                return False
+            head,right = head.next, right.next
+       
+        return True
+
+        
+
+           
+           
+           
+           
+         
+           
+
+Approach3 : use string to store the numbers and then at end check if palindrome or not.
+           Time : o(n^2) --> concatenation is expensive operation
+           space: o(n)
+ 
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        num = '' 
+        while(head):
+            num = num + str(head.val)
+            head = head.next
+        if((num) == (num)[::-1]):return True
+        else : return False
