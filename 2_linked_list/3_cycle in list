@@ -24,3 +24,24 @@ class Solution:
             addr_set.add(head.next)
             head = head.next
         return head.next
+
+Approach 2 : using floyd cycle detection algorithm
+           time : o(n) , space : o(1)
+           
+
+class Solution:
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        slowptr = head
+        fastptr = head
+
+        while fastptr and fastptr.next:
+            slowptr = slowptr.next
+            fastptr = fastptr.next.next
+            if(slowptr == fastptr):break
+        else:
+            return None
+        while(head!=slowptr):
+            slowptr , head = slowptr.next , head.next
+        return head
+            
+
