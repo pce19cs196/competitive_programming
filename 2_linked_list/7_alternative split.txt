@@ -1,0 +1,42 @@
+https://practice.geeksforgeeks.org/problems/split-singly-linked-list-alternatingly/1?utm_source=geeksforgeeks&utm_medium=article_practice_tab&utm_campaign=article_practice_tab
+
+Approach1 : Ans is showing as reversed order , but i think it should work
+
+#User function Template for python3
+
+'''
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+'''
+
+'''
+These are global variables to store heads of split lists
+a --- store head of first list
+b --- store head of second list
+'''
+
+def alternatingSplitList(head):
+    global a,b
+    #Your code here
+    a = head
+    b = head.next
+    tempa = head
+    tempb = head.next
+    while tempb and tempb.next and tempb.next.next :
+        tempa.next = tempb.next
+        tempb.next = tempb.next.next
+        tempa = tempa.next
+        tempb = tempb.next
+    else:
+        if tempb and tempb.next:
+            tempa.next = tempb.next
+            tempb.next = None
+        elif tempb:
+            tempa.next = None
+
+
+   
+            
