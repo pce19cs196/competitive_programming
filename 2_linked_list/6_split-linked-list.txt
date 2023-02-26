@@ -1,0 +1,54 @@
+https://leetcode.com/problems/split-linked-list-in-parts/description/
+
+Approach1 : case1 : when the k is more than or equal to the size of the list itself then ,  the each element in the array would either be single or simply null
+            case2 : using pigeon hole principle for splits
+            Time : o(n)
+            space : o(n) ---> the return value itself require an array. so can't be changed
+            
+            
+            
+            
+            
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def splitListToParts(self, head: Optional[ListNode], k: int) -> List[Optional[ListNode]]:
+        count = 0
+        temp = head
+        while temp:
+            temp = temp.next
+            count +=1
+        
+        ans = []
+        temp = head
+        if(count <= k):
+            while temp:
+                node = temp
+                temp = temp.next
+                node.next=None
+                ans.append(node)
+                k-=1
+            while(k>0):
+                ans.append(None)
+                k-=1
+        else:
+           
+            while(k!=0):
+                split = math.ceil(count/k)
+                to_insert = head
+                while split>1:
+                    head = head.next
+                    split-=1
+                prev = head
+                head = head.next
+                prev.next = None
+                ans.append(to_insert)
+                count -=  math.ceil(count/k)
+                k -=1
+
+   
+
+        return ans
