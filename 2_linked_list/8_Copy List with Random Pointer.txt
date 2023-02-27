@@ -1,0 +1,78 @@
+https://leetcode.com/problems/copy-list-with-random-pointer/description/
+
+Approach1  : Step1: Iterate through the nodes
+                    Make a hashtable with nodes mapped to next pointer
+                    
+             Step2 : Iterate through the nodes
+                     create new nodes and fill next pointer
+                     Alongside make hashtable , with key = original node and value = new node
+             step3 : Iterate through the new nodes and original node
+                     Fill the value of random pointers with the help of two hash tables
+               
+             Time : o(n) , space : o(n)
+             
+           
+         
+Approach2  : Make a copy of each of the nodes. 
+             Time : o(n) , space : o(1)
+             
+             
+             
+             
+             
+ """
+# Definition for a Node.
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+"""
+
+class Solution:
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        if(head == None):
+            return None
+        temp = head
+        while temp:
+            temp1 = temp
+            temp = temp.next
+            temp1.next = Node(temp1.val , temp)
+
+        temp = head
+        while temp:
+            if(temp.random != None):
+                temp.next.random = temp.random.next
+                temp = temp.next
+                temp = temp.next
+            else:
+                temp.next.random = None
+                temp = temp.next
+                temp = temp.next
+
+        new_head = head.next
+        temp1 = head.next
+        temp = head
+        while(temp and temp.next.next):
+            temp.next = temp.next.next
+            temp= temp.next
+            temp1.next = temp1.next.next
+            temp1 =temp1.next
+        else:
+            if(temp):
+                temp.next =None
+        return new_head
+
+
+
+
+
+       
+           
+   
+        
+
+
+                
+            
+                
