@@ -1,0 +1,44 @@
+https://www.codingninjas.com/codestudio/problems/split-a-circular-linked-list_1071003?leftPanelTab=1
+
+Approach : Count the number of nodes
+           Make first circular list from middle
+           Make second circular list from middle.next
+           
+           Time : o(n) , space: o(1)
+          
+          
+ from os import *
+from sys import *
+from collections import *
+from math import *
+
+# List Node Class
+class Node:
+    def __init__(self, data):
+
+        self.data = data
+        self.next = None
+
+
+def splitCircularList(head):
+    #Write your code here
+    pass
+    temp = head
+    count = 1
+    while temp.next !=head:
+        count +=1
+        temp = temp.next
+
+    mid = head
+    count = count//2
+    while(count>1):
+        mid = mid.next
+        count -=1
+    
+    heada = head
+    headb = mid.next
+    mid.next = temp.next
+    temp.next = headb
+    return heada,headb
+
+    
