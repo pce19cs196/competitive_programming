@@ -1,0 +1,73 @@
+https://leetcode.com/problems/add-two-numbers/
+
+Approach1  : step1 : create new linked list to store the added number
+             step2 : traverse through the list and add the two numbers while taking care of carry and each digit should be in between 0 and 9
+                     If one list is larger in size than assume all the correnponding digits of second list be as zero.
+                     Edge case :  There may be carry at the end of adding two list ( similar to overflow)
+                     
+             Time : o(n) ,  space : o(1)
+             
+             
+             
+             
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        ans  = ListNode()
+        head = ans
+
+        first = 1
+        carry = 0
+
+        num1 = l1
+        num2 = l2
+        while(num1 or num2):
+            if(first==1):
+                add = num1.val + num2.val + carry
+                carry = add//10
+                add = add%10
+                ans.val = add
+                num1 = num1.next 
+                num2 = num2.next
+                first +=1
+            else:
+                if num1 and num2:
+                    add = num1.val + num2.val + carry
+                    carry = add//10
+                    add = add%10
+                    ans.next =ListNode( add)
+                    num1 = num1.next 
+                    num2 = num2.next
+                    ans = ans.next
+                elif num1:
+                    add = num1.val+ carry
+                    carry = add//10
+                    add = add%10
+                    ans.next =ListNode( add)
+                    num1 = num1.next 
+                    ans = ans.next
+                else:
+                    add = num2.val+ carry
+                    carry = add//10
+                    add = add%10
+                    ans.next =ListNode( add)
+                    num2 = num2.next 
+                    ans = ans.next
+        
+        if(carry!=0):
+            ans.next = ListNode(carry)
+        return head
+
+
+
+            
+
+
+
+                
+
+
