@@ -1,6 +1,56 @@
 https://leetcode.com/problems/reverse-nodes-in-k-group/description/
 
-Approach1 : Use list in order to store the addresses
+
+Approach1 : using recursion
+            if at least k number of elements are present in my list then i  reverse the first k elements and apply
+            the same logic for the rest of the elements
+            
+            Time : o(n)                   Space: o(n/k) ---> stack space
+
+
+
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        
+        count = 0
+        prev = None
+        curr = head
+        next = None
+        
+        sanity_check = 1
+        temp = head
+        while temp and sanity_check < k :
+            temp = temp.next
+            sanity_check +=1
+        if(temp == None):
+            return head
+
+        while(curr != None and count  < k ):
+            next = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next
+            count +=1
+
+        head.next = self.reverseKGroup(curr,k)
+
+        return prev
+
+
+
+
+
+
+
+
+Approach2 : Use list in order to store the addresses
             Reverse the elements in the list in the group of k .
             Store the intial and end addresses of the reversed elements in the list
             Then when all the reversal is done , then combine the addresses with the help of list
