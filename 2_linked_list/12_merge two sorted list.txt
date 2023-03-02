@@ -1,6 +1,6 @@
 https://leetcode.com/problems/merge-two-sorted-lists/description/
-
-Approach : use recursion
+------------------------------------------------------------------------------------------------------------------------------------------
+Approach1 : use recursion
           Time : o(n)
           space : max( len(list1) , len(list2)  )    ---> stack space
 
@@ -28,5 +28,31 @@ class Solution:
         return new_head
 
         
+        
+     --------------------------------------------------------------------------------------------------------------------------------------------
+ Approach2 : Using iteration . Time: o(n) space: o(1)
+ 
+ def merge(self , list1: Optional[ListNode] , list2: Optional[ListNode]) -> ListNode :
+
+        dummy = curr = ListNode()
+
+        while list1 and list2 :
+            if list1.val < list2.val :
+                curr.next = list1
+                list1 = list1.next
+            else:
+                curr.next = list2
+                list2 = list2.next
+            
+            curr = curr.next
+        if not list1:
+            curr.next =  list2
+        elif not list2:
+            curr.next = list1
+        
+        return dummy.next
+ 
+ 
+ 
             
                 
