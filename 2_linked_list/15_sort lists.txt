@@ -1,0 +1,79 @@
+https://leetcode.com/problems/sort-list/description/
+-------------------------------------------------------------------------------------------------------------
+Approach1 : Here i used the similar approach as of q14 of this segment.
+            Since, i have to sort the list itself.
+            So, i have converted the linked list itself into a list of n elements each index 
+            containing a single element
+            Step1: convert the linked list to n element list
+            step2 : apply divide and conquer strategy , alongside merge the lists
+            
+            Time: o(n*logK)
+            Space : o(logk + k)
+            
+            
+            
+            
+            
+            
+            
+         
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        lists = []
+        temp = head
+
+        while temp:
+            next = temp.next
+            temp.next = None
+            lists.append(temp)
+            temp = next
+        
+
+        return  self.mergeKLists(lists)
+    
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if len(lists) == 0: return None
+        elif len(lists) == 1 : return lists[0]
+        elif len(lists) == 2 : return self.merge(lists[0], lists[1])
+         
+        return self.merge(self.mergeKLists(lists[0 :len(lists)//2 + 1] ),self.mergeKLists(lists[len(lists)//2 + 1 :len(lists)]))
+
+
+    
+    def merge(self , list1 , list2):
+        dummy = curr = ListNode()
+
+        while list1 and list2:
+            if list1.val > list2.val :
+                curr.next = list2
+                list2 = list2.next
+            else:
+                curr.next = list1
+                list1 = list1.next
+            curr = curr.next
+        
+        if not list1:
+            curr.next = list2
+        else :
+            curr.next = list1
+        
+        return dummy.next
+
+
+
+
+    
+            
+
+
+
+        
+       
+        
+       
+
