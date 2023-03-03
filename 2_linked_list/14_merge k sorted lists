@@ -5,7 +5,7 @@ Approach1 : Here we make use of divide and conquer strategy.
             So , at logk levels the tree will end.
             Work done at each level (merging) : o(n1 + n2 + n3 .... nk)
             Overall time complexity : LogK * o(n1 + n2 + n3 .... nk)
-            space : o(1)
+            space : o(LogK)   : Stack space
            
            
            
