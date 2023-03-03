@@ -1,0 +1,39 @@
+https://leetcode.com/problems/merge-k-sorted-lists/description/
+--------------------------------------------------------------------------------------------------------------------------------------------------
+Approach1 : apply in place merge of two sorted lists for each of the individual lists
+           Note : we will combine the result of previously obtained list with the new list
+           Time : o ( (n1+n2) + (n1+n2+n3) + (n1+n2 + n3 +n4) +    (n1+n2+n3+n4......nk))
+           space : o(1)
+           
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        ans = None
+        for i in range(0,len(lists)):
+            ans = self.merge(ans, lists[i])
+        return ans
+
+
+    
+    def merge(self , list1 , list2):
+        dummy = curr = ListNode()
+
+        while list1 and list2:
+            if list1.val > list2.val :
+                curr.next = list2
+                list2 = list2.next
+            else:
+                curr.next = list1
+                list1 = list1.next
+            curr = curr.next
+        
+        if not list1:
+            curr.next = list2
+        else :
+            curr.next = list1
+        
+        return dummy.next
