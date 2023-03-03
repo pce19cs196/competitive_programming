@@ -3,7 +3,7 @@ https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/descriptio
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 Approach1 : Store the addresses of next node in the list wherever we encounter a child node
             After storing the addresses in the list, reach the end of last child node.
-            Start merging rest of the nodes using the list of stored addresses
+            Start merging rest of the nodes using the list of stored addresses.  Similar to using stack
             
             Time : o(n)  space: o(n) --> every alternate node is child node
             
