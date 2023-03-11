@@ -1,0 +1,127 @@
+https://practice.geeksforgeeks.org/problems/union-of-two-linked-list/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+-------------------------------------------------------------------------------------------------------------------------------------
+Approach1 : s1 : merge the list
+            s2 : sort the list
+            s3 : remove the duplicate
+            
+            Time : o((n+m)log(n+m)
+            space : o(log(n+m))
+            
+            
+#User function Template for python3
+
+def union(head1,head2):
+    # code here
+    # return head of resultant linkedlist
+    
+    temp = head1
+    while temp and temp.next:
+        temp = temp.next
+    
+    temp.next = head2
+    sortedlist = sortList(head1)
+    removedup = deleteDuplicates(sortedlist)
+    return removedup
+
+def deleteDuplicates( head ):
+    temp = head
+    while temp and temp.next:
+        if temp.data == temp.next.data :
+            temp.next = temp.next.next
+        else:
+            temp = temp.next
+        
+    return head
+
+
+def sortList( head) :
+    if not head or not head.next:
+        return head
+    first_end = head
+    second_end = findmid(head)
+    return merge( sortList(first_end),sortList(second_end))
+
+
+    
+def findmid( list1):
+    slow = list1
+    fast = list1
+    prev = None
+    while fast and fast.next :
+        prev= slow
+        slow = slow.next
+        fast = fast.next.next
+        
+    prev.next = None
+        
+    return slow
+        
+
+    
+def merge( list1 , list2):
+    dummy = curr = linkedList()
+
+    while list1 and list2:
+        if list1.data > list2.data :
+            curr.next = list2
+            list2 = list2.next
+        else:
+            curr.next = list1
+            list1 = list1.next
+        curr = curr.next
+        
+    if not list1:
+        curr.next = list2
+    else :
+        curr.next = list1
+        
+    return dummy.next
+
+
+#{ 
+ # Driver Code Starts
+#Initial Template for Python 3
+
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+
+class linkedList:
+    def __init__(self):
+        self.head=None
+        self.tail=None
+    
+    def insert(self,data):
+        if self.head is None:
+            self.head = Node(data)
+            self.tail = self.head
+        else:
+            self.tail.next = Node(data)
+            self.tail = self.tail.next
+
+def printList(head):
+    while head:
+        print(head.data,end=' ')
+        head=head.next
+        
+if __name__ == '__main__':
+    for _ in range(int(input())):
+        
+        n1 = int(input())
+        arr1 = [int(x) for x in input().split()]
+        ll1 = linkedList()
+        for i in arr1:
+            ll1.insert(i)
+        
+        n2 = int(input())
+        arr2 = [int(x) for x in input().split()]
+        ll2 = linkedList()
+        for i in arr2:
+            ll2.insert(i)
+        
+        printList(union(ll1.head,ll2.head))
+        print()
+
+# } Driver Code Ends
+-------------------------------------------------------------------------------------------------------------------------------------------------
