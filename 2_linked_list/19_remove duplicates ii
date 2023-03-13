@@ -1,6 +1,53 @@
 https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
+----------------------------------------------------------------------------------------------------------------------------------------------------
+Approach1: Use dummy pointer
+         Check curr and next nodes value.
+          If both are equal , move to next node into the list
+          otherwise store it in the next pointer of the dummy variable
+          time :o (n) space : o(1)
+          
+          
+ # Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        
+        prev = ListNode()
+        dummy = prev
+        curr = head
+        prevval = -1
+        while curr and curr.next:
+            if curr.val == curr.next.val:
+                curr = curr.next
+                prevval = 1
+            elif prevval == 1 : 
+                curr = curr.next
+                prevval = -1
+            else:
+                dummy.next = curr
+                dummy = dummy.next
+                curr = curr.next
+                dummy.next = None
+                
+        if prevval !=1:
+            dummy.next = curr
+
+
+           
+        return prev.next
+
+
+    
+
+            
+
+
+
 -----------------------------------------------------------------------------------------------------------------------------------------
-Approach1 : Iterate through the list
+Approach2 : Iterate through the list
            If there is a duplicate , then store it in the list ( dictionary / two sets can be used ---> I have used two sets)
            Once again iterate through the list.
            check each value if present in the duplicate list.
