@@ -1,0 +1,19 @@
+https://leetcode.com/problems/find-peak-element/description/
+-----------------------------------------------------------------------------------------------
+Approach1 : Use linear search. 
+            Edge test case1: sorted in asc order
+            Edge test case2: sorted in dsc order
+            Time : o(n) space : o(1)
+            
+            Note : Here , we are checking a[i] > a[i+1] only because prev step have already checked a[i-1]<a[i]
+            
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        for i in range(len(nums)-1):
+            if nums[i] >= nums[i+1]:
+                return i
+        return len(nums) - 1
+        
+------------------------------------------------------------------------------------------------
+        
+
