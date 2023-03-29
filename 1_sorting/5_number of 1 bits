@@ -1,7 +1,7 @@
 https://leetcode.com/problems/number-of-1-bits/description/
 ---------------------------------------------------------------------------------
 Approach1:use & and right shift operator
-Time : 
+Time : o(n)
 Space : o(1)
 
 class Solution:
@@ -14,3 +14,15 @@ class Solution:
             n  = n>> 1
         return count
  -------------------------------------------------------------------------------------------
+ Approach2 : Here , by performing (n) & (n-1) ,  we are actually decreasing the number of 1's in the 
+             number n by   1
+             Time: o(n) , space: o(1)
+             
+             
+class Solution:
+    def hammingWeight(self, n):
+        ans = 0
+        while n:
+            n &= (n-1)
+            ans += 1
+        return ans
