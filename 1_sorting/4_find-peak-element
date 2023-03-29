@@ -15,5 +15,57 @@ class Solution:
         return len(nums) - 1
         
 ------------------------------------------------------------------------------------------------
+Approach2 : use binary search.
+           Go towards rising slope.
+           
+           Recursive : Time : o(logn)              space : o(logn)
+           Iterative: Time :o(logn)                space : o(1)
+           
+           
+ ------------------------------RECURSIVE-----------------------------------------------
+ class Solution:
+
+
+    def findPeakElement(self, nums: List[int]) -> int:
+        return self.bsearch(nums,0,len(nums)-1)
+    
+    def bsearch(self,nums,low,high):
+        if low == high:
+            return low
+        mid = (low+high)//2
+
+        if nums[mid] < nums[mid+1] :
+            return self.bsearch(nums,mid+1,high)
+        else:
+            return self.bsearch(nums,low,mid)
+      
+      
+        
+ ------------------------------ITERATIVE-----------------------------------------------
+ class Solution:
+
+
+    def findPeakElement(self, nums: List[int]) -> int:
+        low = 0
+        high = len(nums) -1
+       
+
+        while low<high:
+            mid = (low+high)//2
+
+            if nums[mid] < nums[mid+1] :
+                low = mid + 1
+            else:
+                high = mid
+        return low
+                 
+
+
+        
+
+       
+        
+
+
         
 
