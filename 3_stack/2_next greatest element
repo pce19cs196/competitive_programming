@@ -1,0 +1,22 @@
+https://leetcode.com/problems/next-greater-element-i/description/
+-----------------------------------------------------------------------------
+Approach1  : Simply search each value of nums1 from the end of nums2.
+             Time : o(n^2)                space : o(1)
+
+
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        ans = []
+        for i in nums1:
+            minv = -1
+            for j in reversed(range(len(nums2))):
+                if nums2[j] > i:
+                    minv = nums2[j]
+                elif nums2[j] == i:
+                    break
+            
+            
+            ans.append(minv)
+        
+        return ans
+-------------------------------------------------------------------------------------
