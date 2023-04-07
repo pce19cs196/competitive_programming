@@ -1,6 +1,61 @@
 https://leetcode.com/problems/min-stack/description/
+
+---------------------------------------------------------------------------------------------------------------------------------
+Approach1: Using 2 stacks
+          First stack for all the normal operation
+          Second stack keeps appending min elements as elements get inserted  ( in case a min element itself gets popped ,
+                                                                                 the prev min element must be there)
+           Time : o(1)  space : o(1)
+
+class MinStack:
+    def __init__(self):
+        self.dummy = []
+        self.min = []
+    
+
+    def push(self, val: int) -> None:
+        if not self.dummy:
+            self.min.append(val)
+        
+        elif self.min[-1] >= val:
+            self.min.append(val)
+
+        self.dummy.append(val)
+
+    def pop(self) -> None:
+        if self.dummy[-1] == self.min[-1]:
+            self.min.pop()
+
+        self.dummy.pop()
+
+        
+
+    def top(self) -> int:
+        return self.dummy[-1]
+        
+
+    def getMin(self) -> int:
+        return self.min[-1]
+
+
+
+# Your MinStack object will be instantiated and called as such:
+# obj = MinStack()
+# obj.push(val)
+# obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.getMin()
+
+
+
+
+
+
+
+
+
 ------------------------------------------------------------------------------------------------------------------------------
-Approach1 : I have created a separate class node which contains val,min,next
+Approach2 : I have created a separate class node which contains val,min,next
             Whenever, i push a value , i also add the min value for that node.
             So, whenever , i pop an element from the stack , the min value will be 
             maintained as for every node we have separate min value which 
