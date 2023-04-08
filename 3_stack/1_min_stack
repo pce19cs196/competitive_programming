@@ -1,11 +1,82 @@
 https://leetcode.com/problems/min-stack/description/
+----------------------------------------------------------------------------------------------------------------------------------
+Approach1 : using maths.
+            orig_val > min
+            orig_val - min > 0
+            2*orig_val - min > orig_val
+            // if we push
+            if stack.min <= orig_val
+            stack.new_top = 2*orig_val - min
+            
+            //if we pop
+            new_top = 2*orig_val - min
+            Need to obtain prev min
+            ==> min = 2*orig_val - new_top
+                min =       2*stack.min - stack.top()
+             
+            Time : o(n)           space : o(1)
+ 
+ 
+class MinStack:
+    def __init__(self):
+        self.stack = []
+        self.min = None
+    
+
+    def push(self, val: int) -> None:
+        if not self.stack:
+            self.min = val
+            self.stack.append(val)
+        
+        elif self.min >= val:
+            new_val = 2*val-self.min 
+            self.min = val
+            self.stack.append(new_val)
+            # val>min ==> 2*val-min >val
+            #2*orig - min == new_top
+            #2*orig - new_top == min
+        else:
+            self.stack.append(val)
+
+
+
+
+    def pop(self) -> None:
+        if self.stack[-1] <= self.min:
+            self.min  = 2*self.min - self.stack[-1]
+
+        self.stack.pop()
+
+        
+
+    def top(self) -> int:
+        if self.stack[-1] <= self.min:
+            return self.min 
+        return self.stack[-1]
+        
+
+    def getMin(self) -> int:
+        return self.min
+
+
+
+# Your MinStack object will be instantiated and called as such:
+# obj = MinStack()
+# obj.push(val)
+# obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.getMin()
+            
+
+
+
 
 ---------------------------------------------------------------------------------------------------------------------------------
-Approach1: Using 2 stacks
+Approach2: Using 2 stacks
           First stack for all the normal operation
           Second stack keeps appending min elements as elements get inserted  ( in case a min element itself gets popped ,
                                                                                  the prev min element must be there)
-           Time : o(1)  space : o(1)
+           Time : o(1)  space : o(n) :--> Additional stack for storing min elements
 
 class MinStack:
     def __init__(self):
@@ -55,7 +126,7 @@ class MinStack:
 
 
 ------------------------------------------------------------------------------------------------------------------------------
-Approach2 : I have created a separate class node which contains val,min,next
+Approach3 : I have created a separate class node which contains val,min,next
             Whenever, i push a value , i also add the min value for that node.
             So, whenever , i pop an element from the stack , the min value will be 
             maintained as for every node we have separate min value which 
