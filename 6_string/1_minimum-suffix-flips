@@ -1,0 +1,28 @@
+https://leetcode.com/problems/minimum-suffix-flips/description/
+-------------------------------------------------------------------------------
+Approach1 : simply count no of alternate 1's ans 0's starting from first 1
+            Time : o(n)   space : o(1)
+  
+class Solution:
+    def minFlips(self, target: str) -> int:
+        j =0
+        for i in range(len(target)):
+            if target[i] == "1":
+                j = i
+                break
+
+
+        prev = target[j]
+        count = 0
+    
+    
+        for i in range(j+1,len(target)):
+            if not prev == target[i]:
+                prev = target[i]
+                count +=1
+        if count == 0 and target[i] == "0":
+            return 0
+        return count + 1
+
+    
+-------------------------------------------------------------------------------------
