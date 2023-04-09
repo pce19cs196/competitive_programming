@@ -1,0 +1,21 @@
+https://leetcode.com/problems/break-a-palindrome/description/
+----------------------------------------------------------------------
+Time : o(n)    space:o(1)
+
+class Solution:
+    def breakPalindrome(self, palindrome: str) -> str:
+        string = "abcdefghijklmnopqrstuvwxyz"
+        ans = ""
+        for i in range(len(palindrome)//2):
+            if palindrome[i] != "a" and i == 0:
+                ans = "a" + palindrome[i+1:len(palindrome)]
+                break
+            elif palindrome[i] != "a" and i != 0:
+                ans = palindrome[0:i] +"a" + palindrome[i+1:len(palindrome)]
+                break
+        if ans == "" and len(palindrome)>1:
+            ans =   palindrome[0:len(palindrome)-1] + "b"
+
+        return ans
+        
+  --------------------------------------------------------------------------
