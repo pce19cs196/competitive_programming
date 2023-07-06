@@ -1,1 +1,19 @@
+Level - Medium
+https://leetcode.com/problems/maximum-subarray/
+---------------------------------------------------------------------------------------------
+Brute force : Time : o(n^2)  space : o(1)
+Lets start with index 0 . Loop through 1 to end .        Subarray : a[0....n]
+Lets start with index 1 . Loop throught 2 to end         Subarray : a[1...n]
 
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        maxSum = -999999
+        for i in range(len(nums)):
+            sum = 0
+            
+            for j in range(i,len(nums)):
+                sum += nums[j]
+                if sum > maxSum:
+                    maxSum = sum
+        return maxSum
+---------------------------------------------------------------------------------------------
