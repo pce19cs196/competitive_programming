@@ -1,0 +1,32 @@
+https://leetcode.com/problems/ugly-number-ii/
+--------------------------------------------------------------------
+Method1  : Brute Force :  For each number for 1 to n ,i am checking whether its prime factor is only 2,4,5
+           Time : log(1) + log(2) + ... log(n) = log(n!) = log(n^n) = nlog(n)
+
+class Solution:
+    def nthUglyNumber(self, n: int) -> int:
+        count = 0
+        i = 1
+        while count != n:
+            if self.checkprimeFactor(i) :
+                count +=1
+            i+=1
+        return i-1
+    
+
+    def checkprimeFactor(self,n):
+        while n != 1 :
+            if n%2 == 0:
+                n//=2
+            elif n%3 == 0:
+                n//=3
+            elif n%5 == 0:
+                n//=5
+            else:
+                break
+        if n !=1 :
+            return False
+        else:
+            return True
+-----------------------------------------------------------------------------------
+
