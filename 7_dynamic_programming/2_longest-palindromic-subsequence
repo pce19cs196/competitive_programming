@@ -1,0 +1,25 @@
+https://leetcode.com/problems/longest-palindromic-subsequence/
+----------------------------------------------------------------------------------------------
+Recursive Solution:
+Here L[i,j] is the string
+L(i,j) ==        1    ; if i ==j
+                 0    ;  if L is Null or i>j
+                 2 + L(i+1,j-1)  ;  if L[i] == L[j]
+                 max(L(i,j-1) , L(i+1,j))
+
+
+                 
+class Solution:
+    def longestPalindromeSubseq(self, s: str) -> int:
+        return self.recur(s, 0 ,len(s)-1)
+    
+    def recur(self , s , i , j):
+        if i == j :
+            return 1
+        elif s is None or i>j:
+            return 0
+        elif s[i] == s[j] :
+            return 2 + self.recur(s, i+1 , j-1)
+        else:
+            return max(self.recur(s , i+1 , j), self.recur(s , i , j-1))
+---------------------------------------------------------------------------------
