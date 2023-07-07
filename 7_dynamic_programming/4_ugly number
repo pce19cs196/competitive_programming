@@ -29,4 +29,25 @@ class Solution:
         else:
             return True
 -----------------------------------------------------------------------------------
+Heapify : Time:o(nlogn) , space:o (n)
+          In each iteration , 3 push operations : o(logn)
+          Total n iterations : n*logn
+
+import heapq as hq
+class Solution:
+    def nthUglyNumber(self, n: int) -> int:
+        list1 = [1]
+        hq.heapify(list1)
+        minelement = 0
+        while(n!=0):
+            minelement = list1[0]
+            while(len(list1)>0 and list1[0]==minelement):
+                hq.heappop(list1)
+            hq.heappush(list1,2*minelement)
+            hq.heappush(list1,3*minelement)
+            hq.heappush(list1,5*minelement)
+            n -= 1
+        return minelement
+
+----------------------------------------------------------------------------------
 
