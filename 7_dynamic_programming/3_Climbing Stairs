@@ -33,7 +33,7 @@ class Solution:
          
         return res
 --------------------------------------------------------------------
-Recursion:Time:o(2^n)
+Recursion:Time:o(2^n)  , space: o(n) --> stack
 def recur(self,n):
         if n == 1:
             return 1
@@ -43,7 +43,7 @@ def recur(self,n):
         else:
             return self.recur(n-1) + self.recur(n-2)
 ------------------------------------------------------------------------
-Top-down + memoization
+Top-down + memoization :  Time:o(n) , space:o(n) + o(n) -->stack
 
 class Solution:
     def climbStairs(self, n: int) -> int:
@@ -61,5 +61,16 @@ class Solution:
         else:
             dict1[n] = self.recur(n-1,dict1) + self.recur(n-2,dict1)
             return dict1[n]
+------------------------------------------------------------------------
+Bottom up: Time: o(n) space:o(n)
 
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        list1 = []
+        list1.append(1)
+        list1.append(2)
+        for i in range(2,n):
+            list1.append(list1[i-1] + list1[i-2])
+        return list1[n-1]
+-----------------------------------------------------------------
 
