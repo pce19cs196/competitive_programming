@@ -23,7 +23,7 @@ class Solution:
         else:
             return max(self.recur(s , i+1 , j), self.recur(s , i , j-1))
 ---------------------------------------------------------------------------------
-Manually checking if subproblems overlap. It does here. Applying dictionary
+Manually checking if subproblems overlap. It does here. Applying dictionary : Top down approach
 Time: o(n^2)  space: o(n^2) + stack_space
 
 class Solution:
@@ -47,7 +47,7 @@ class Solution:
             return list1[s[i:j+1]]
 
 
-using list:
+using list:Time: o(n^2) , space: o(n^2) + stack_space
 
 
 class Solution:
@@ -69,3 +69,24 @@ class Solution:
             memo[i][j] = max(self.recur(s , i+1 , j,memo), self.recur(s , i , j-1,memo))
         
         return memo[i][j]
+------------------------------------------------------------------------------------------------------------------------
+Bottom up approach of the above.  Time: o(n^2) , space: o(n^2) 
+
+
+class Solution:
+    def longestPalindromeSubseq(self, s: str) -> int:
+        dp =[[0 for _ in range(len(s))] for _ in range(len(s)) ]
+        for i in range(len(s)) :
+            dp[i][i] =1
+        
+        dist = 1
+        for i in range(len(s)) :
+            for j in range(len(s) - dist) : 
+                if s[j] == s[j+dist]:
+                    dp[j][j+dist] = 2 + dp[j+1][j+dist-1]
+                else:
+                    dp[j][j+dist] = max(dp[j][j+dist-1] , dp[j+1][j+dist])
+            dist+=1
+        return dp[0][len(s) -1]
+
+
