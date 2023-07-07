@@ -1,0 +1,34 @@
+https://leetcode.com/problems/climbing-stairs/description/
+------------------------------------------------------------------------------------------
+Approach1 : Without dp.
+           Eg : 4 
+                1 1 1 1      --->1
+                2 1 1       |
+                1 2 1       |---->  4!/2!*1!     
+                1 1 2       |
+                2 2         -----> 4!/2!*1!
+
+                Ans : 1 + 4!/2! + 4!/2!
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        ans = 1
+        oneCount = n
+        twoCount = 0
+        while(True) :
+            print(oneCount)
+            twoCount +=1
+            oneCount -=2
+            if oneCount + 2*twoCount > n or oneCount<0 : break
+            ans +=self.fact(oneCount+twoCount)/(self.fact(oneCount)*self.fact(twoCount))
+        return int(ans)
+
+    
+    def fact(self,n):
+        if n == 0:
+           return 1
+        res = 1
+        for i in range(2, n+1):
+           res = res * i
+         
+        return res
