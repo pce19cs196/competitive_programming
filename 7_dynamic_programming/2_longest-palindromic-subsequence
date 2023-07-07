@@ -23,3 +23,25 @@ class Solution:
         else:
             return max(self.recur(s , i+1 , j), self.recur(s , i , j-1))
 ---------------------------------------------------------------------------------
+Manually checking if subproblems overlap. It does here. Applying dictionary
+Time: o(n^2)  space: o(n^2) + stack_space
+
+class Solution:
+    def longestPalindromeSubseq(self, s: str) -> int:
+        list1 = {}
+        return self.recur(s, 0 ,len(s)-1, list1)
+    
+    def recur(self , s , i , j , list1):
+        if s[i:j+1] in list1:
+            return list1[s[i:j+1]]
+        elif i == j :
+            list1[s[i:j+1]] = 1
+            return 1
+        elif s is None or i>j:
+            return 0
+        elif s[i] == s[j] :
+            list1[s[i:j+1]] =  2 + self.recur(s, i+1 , j-1,list1)
+            return list1[s[i:j+1]]
+        else:
+            list1[s[i:j+1]] = max(self.recur(s , i+1 , j,list1), self.recur(s , i , j-1,list1))
+            return list1[s[i:j+1]]
