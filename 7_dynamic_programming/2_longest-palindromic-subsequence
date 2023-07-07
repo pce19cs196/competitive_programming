@@ -1,6 +1,6 @@
 https://leetcode.com/problems/longest-palindromic-subsequence/
 ----------------------------------------------------------------------------------------------
-Recursive Solution:
+Recursive Solution: Time:o(2^n)
 Here L[i,j] is the string
 L(i,j) ==        1    ; if i ==j
                  0    ;  if L is Null or i>j
@@ -45,3 +45,27 @@ class Solution:
         else:
             list1[s[i:j+1]] = max(self.recur(s , i+1 , j,list1), self.recur(s , i , j-1,list1))
             return list1[s[i:j+1]]
+
+
+using list:
+
+
+class Solution:
+    def longestPalindromeSubseq(self, s: str) -> int:
+        memo =[[0 for _ in range(len(s))] for _ in range(len(s)) ]
+        return self.recur(s, 0 ,len(s)-1, memo)
+    
+    def recur(self , s , i , j , memo):
+        if memo[i][j] != 0:
+            return memo[i][j]
+        elif i == j:
+            return 1
+        elif i>j:
+            return 0
+        elif s[i] == s[j] :
+            memo[i][j] =  2 + self.recur(s, i+1 , j-1,memo)
+            
+        else:
+            memo[i][j] = max(self.recur(s , i+1 , j,memo), self.recur(s , i , j-1,memo))
+        
+        return memo[i][j]
