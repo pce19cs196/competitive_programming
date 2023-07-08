@@ -50,4 +50,37 @@ class Solution:
         return minelement
 
 ----------------------------------------------------------------------------------
+Using DP: Not so trivial to see.
+         If we look at the heap based solution . Then , we will find out that we are forced to check if duplicate 
+         numbers already are present.
+         So, we have two tasks at the hand : a) Avoid duplicate addition of numbers
+                                              b) Min element should always be available
+        So, we have used 3 pointers in order to point to the last position a particular prime factor needs to be multiplied
+       We will only add min number in the list.
+         Time:o(n)   space: o(n)
+
+
+class Solution:
+    def nthUglyNumber(self, n: int) -> int:
+        p2 = 0
+        p3 = 0
+        p5 = 0
+        ugly_num = [1]
+        next_ugly = 1
+
+        for i in range(n-1):
+            next_ugly = min(2*ugly_num[p2]  , 3*ugly_num[p3]  , 5*ugly_num[p5])
+            ugly_num.append(next_ugly)
+
+            if next_ugly == 2*ugly_num[p2] :
+                p2+=1
+
+            if next_ugly == 3*ugly_num[p3] :
+                p3+=1
+
+            if next_ugly == 5*ugly_num[p5] :
+                p5+=1
+        
+        return next_ugly
+----------------------------------------------------------------------------------------
 
