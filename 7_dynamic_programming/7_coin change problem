@@ -1,0 +1,54 @@
+https://leetcode.com/problems/coin-change/description/
+------------------------------------------------------------------------------------------------------
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        return self.coinc(coins,amount)
+    
+    def coinc(self,coins,amount):
+        if amount ==0:
+            return 0
+
+        elif amount <0:
+            return -1
+        
+        else:
+            mina = 999999
+            for i in coins:
+                if(self.coinc(coins,amount-i) == -1):
+                    continue
+                mina = min(mina , 1+self.coinc(coins,amount-i))
+            
+            if mina == 999999:
+                return -1
+            return mina
+
+------------------------------------------------------------------------------------------------------
+Top down + memoization
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        dict1 = {}
+        return self.coinc(coins,amount,dict1)
+    
+    def coinc(self,coins,amount,dict1):
+        if amount in dict1:
+            return dict1[amount]
+
+        if amount ==0:
+            return 0
+
+        elif amount <0:
+            return -1
+        
+        else:
+            mina = 999999
+            for i in coins:
+                nextc = self.coinc(coins,amount-i,dict1)
+                if(nextc== -1):
+                    continue
+                mina = min(mina , 1+nextc)
+            
+            if mina == 999999:
+                mina =  -1
+            dict1[amount] = mina
+            
+            return  dict1[amount]
