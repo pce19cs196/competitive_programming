@@ -32,3 +32,16 @@ class Solution:
 
         dict1[(m,n)] =  self.uniqueP(m,n-1,dict1) +self.uniqueP(m-1,n,dict1)
         return dict1[(m,n)]
+-----------------------------------------------------------------------------------
+Bottom up . Time:o(m*n) space: o(m*n)
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        paths = [[0 for i in range(n+1)] for j in range(m+1)]
+        
+        paths[m-1][n-1] = 1
+        # print(paths)
+        # print(paths[m-1][n-1])
+        for i in reversed(range(n)):
+            for j in reversed(range(m)):
+                paths[j][i] += paths[j][i+1] + paths[j+1][i]
+        return paths[0][0]
