@@ -1,5 +1,8 @@
 https://leetcode.com/problems/coin-change/description/
 ------------------------------------------------------------------------------------------------------
+Time:o(amount^coins)   Space:o(amount)
+
+
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         return self.coinc(coins,amount)
@@ -23,7 +26,9 @@ class Solution:
             return mina
 
 ------------------------------------------------------------------------------------------------------
-Top down + memoization
+Top down + memoization :Time:o(amount*coins)   Space:o(amount) + o(amount)
+
+
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         dict1 = {}
@@ -53,7 +58,9 @@ class Solution:
             
             return  dict1[amount]
 -------------------------------------------------------------------------------------
-Bottom up
+Bottom up : Time:o(amount*coins)   Space:o(amount) 
+
+
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         minCoins = [sys.maxsize for i in range(amount+1)]
