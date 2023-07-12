@@ -31,3 +31,12 @@ class Solution:
         else:
             dict1[N] =  self.arrange(N-1,dict1) + self.arrange(N-4,dict1)
             return dict1[N]
+-------------------------------------------------------------------------------------
+Bottom up approach
+
+class Solution:
+    def arrangeTiles(self, N):
+        tiles = [1,1,1,1]
+        for i in range(4,N+1):
+            tiles.append(tiles[i-1] + tiles[i-4])
+        return tiles[N]
