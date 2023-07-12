@@ -16,3 +16,18 @@ class Solution:
 
 -----------------------------------------------------------------------------------
 Top down + memoization
+
+class Solution:
+    def arrangeTiles(self, N):
+        dict1 = {}
+        return self.arrange(N,dict1)
+            
+        # code here
+    def arrange(self,N,dict1):
+        if N in dict1:
+            return dict1[N]
+        if N==0 or N == 1 or N == 2 or N == 3:
+            return 1
+        else:
+            dict1[N] =  self.arrange(N-1,dict1) + self.arrange(N-4,dict1)
+            return dict1[N]
