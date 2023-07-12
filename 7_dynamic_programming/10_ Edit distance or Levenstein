@@ -1,0 +1,17 @@
+https://leetcode.com/problems/edit-distance/
+----------------------------------------------------------------
+Recursion
+
+class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+        return self.minimumD(word1,word2,len(word1), len(word2))
+    
+    def minimumD(self ,  word1 , word2 , n , m):
+        if n == 0 : 
+            return m
+        elif m == 0 : 
+            return n
+        elif word1[n-1] == word2[m-1]:
+            return self.minimumD(word1,word2,n-1, m-1)
+        else:
+            return min(1+self.minimumD(word1,word2,n-1, m) ,1+ self.minimumD(word1,word2,n, m-1), 1+ self.minimumD(word1,word2,n-1, m-1))
