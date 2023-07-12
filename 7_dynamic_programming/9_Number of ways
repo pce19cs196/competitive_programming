@@ -1,6 +1,6 @@
 https://practice.geeksforgeeks.org/problems/number-of-ways2552/1
 ---------------------------------------------------------------------------------------
-Recursive Solution
+Recursive Solution : time : o(2^n) space:o(n)
 
 class Solution:
     def arrangeTiles(self, N):
@@ -15,7 +15,7 @@ class Solution:
 
 
 -----------------------------------------------------------------------------------
-Top down + memoization
+Top down + memoization : time : o(n) space:o(n) + o(n)
 
 class Solution:
     def arrangeTiles(self, N):
@@ -32,7 +32,7 @@ class Solution:
             dict1[N] =  self.arrange(N-1,dict1) + self.arrange(N-4,dict1)
             return dict1[N]
 -------------------------------------------------------------------------------------
-Bottom up approach
+Bottom up approach :  time : o(n) space:o(n) + o(n)
 
 class Solution:
     def arrangeTiles(self, N):
