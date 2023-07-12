@@ -1,0 +1,18 @@
+https://practice.geeksforgeeks.org/problems/number-of-ways2552/1
+---------------------------------------------------------------------------------------
+Recursive Solution
+
+class Solution:
+    def arrangeTiles(self, N):
+        return self.arrange(N)
+            
+        # code here
+    def arrange(self,N):
+        if N==0 or N == 1 or N == 2 or N == 3:
+            return 1
+        else:
+            return self.arrange(N-1) + self.arrange(N-4)
+
+
+-----------------------------------------------------------------------------------
+Top down + memoization
