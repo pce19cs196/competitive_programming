@@ -1,7 +1,8 @@
 https://leetcode.com/problems/minimum-path-sum/description/
 -----------------------------------------------------------------------------------------
-Top down + memoization
-class Solution:
+Top down + memoization:Time : O(M*N)   Space: O(M*N) + O(M+N)
+
+class Solution: 
     def minPathSum(self, grid: List[List[int]]) -> int:
         dict1 = {}
         return self.minPath(grid , len(grid) -1 , len(grid[0]) -1,dict1)
@@ -21,7 +22,7 @@ class Solution:
         
         return dict1[(x,y)]
 --------------------------------------------------------------------------------------------------
-Bottom up
+Bottom up: Time : O(M*N)   Space: O(M*N) 
 
 class Solution:
     def minPathSum(self, grid: List[List[int]]) -> int:
