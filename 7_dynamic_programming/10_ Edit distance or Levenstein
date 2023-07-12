@@ -1,6 +1,7 @@
 https://leetcode.com/problems/edit-distance/
-----------------------------------------------------------------
+---------------------------------------------------------------------
 Recursion
+
 
 class Solution:
     def minDistance(self, word1: str, word2: str) -> int:
@@ -15,3 +16,25 @@ class Solution:
             return self.minimumD(word1,word2,n-1, m-1)
         else:
             return min(1+self.minimumD(word1,word2,n-1, m) ,1+ self.minimumD(word1,word2,n, m-1), 1+ self.minimumD(word1,word2,n-1, m-1))
+            
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Top down + memoization
+
+class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+        dict1 = {}
+        return self.minimumD(word1,word2,len(word1), len(word2),dict1)
+    
+    def minimumD(self ,  word1 , word2 , n , m,dict1):
+        if (n,m) in dict1:
+            return dict1[(n,m)]
+        if n == 0 : 
+            return m
+        elif m == 0 : 
+            return n
+        elif word1[n-1] == word2[m-1]:
+            dict1[(n,m)] =  self.minimumD(word1,word2,n-1, m-1,dict1)
+        else:
+            dict1[(n,m)] = min(1+self.minimumD(word1,word2,n-1, m,dict1) ,1+ self.minimumD(word1,word2,n, m-1,dict1), 1+ self.minimumD(word1,word2,n-1, m-1,dict1))
+        
+        return dict1[(n,m)]
