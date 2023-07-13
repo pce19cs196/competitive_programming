@@ -38,3 +38,31 @@ class Solution:
             dict1[(n,m)] = min(1+self.minimumD(word1,word2,n-1, m,dict1) ,1+ self.minimumD(word1,word2,n, m-1,dict1), 1+ self.minimumD(word1,word2,n-1, m-1,dict1))
         
         return dict1[(n,m)]
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Bottom up approach
+
+class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+        distances = [[0 for i in range(len(word1)+1)] for j in range(len(word2)
+                      + 1)]
+        print(distances)
+        
+        for i in range(1,len(word1)+1):   #1st row
+            distances[0][i] = i
+        
+        for i in range(1,len(word2)+1):    #1st col
+            distances[i][0] = i
+        
+        for i in range(1,len(word2)+1):
+            for j in range(1,len(word1)+1): 
+                if word2[i-1] == word1[j-1]:
+                    distances[i][j] = distances[i-1][j-1]
+                    continue 
+                distances[i][j] = 1 + min(distances[i-1][j],distances[i][j-1],distances[i-1][j-1])
+            
+        
+        return distances[-1][-1]
+
+
+        
+
