@@ -1,0 +1,21 @@
+https://leetcode.com/problems/super-egg-drop/description/
+-----------------------------------------------------------------------------
+Recursive
+class Solution:
+    def superEggDrop(self, k: int, n: int) -> int:
+        return self.eggDrop(k,n)
+    
+    def eggDrop(self,k,n):
+        if k == 1:
+            return n
+        if n == 1:
+            return 1
+        if n == 0 :
+            return 0
+   
+        minimum = 999999
+        for i in range(1,n+1):
+            value = 1 + max(self.eggDrop(k-1,i-1),self.eggDrop(k,n-i))
+            minimum = min(minimum,value)
+        
+        return minimum
