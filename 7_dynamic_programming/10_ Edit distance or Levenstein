@@ -1,6 +1,6 @@
 https://leetcode.com/problems/edit-distance/
 ---------------------------------------------------------------------
-Recursion
+Recursion: Time: o(3^n) , space= o(n+m)
 
 
 class Solution:
@@ -18,7 +18,7 @@ class Solution:
             return min(1+self.minimumD(word1,word2,n-1, m) ,1+ self.minimumD(word1,word2,n, m-1), 1+ self.minimumD(word1,word2,n-1, m-1))
             
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-Top down + memoization
+Top down + memoization : Time: o(n*m) , space= o(n*m) + o(n+m)
 
 class Solution:
     def minDistance(self, word1: str, word2: str) -> int:
@@ -39,7 +39,7 @@ class Solution:
         
         return dict1[(n,m)]
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Bottom up approach
+Bottom up approach: Time: o(n*m) , space= o(n*m) + o(n+m)
 
 class Solution:
     def minDistance(self, word1: str, word2: str) -> int:
