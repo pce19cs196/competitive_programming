@@ -2,11 +2,16 @@ https://leetcode.com/problems/word-break/
 -------------------------------------------------------------
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        wordict  = set(wordDict)
+
+        return self.wordbreak(s,wordict)
+
+
+    def wordbreak(self, s, wordDict) -> bool:
         if s in wordDict:
-            
             return True
-        
-        for i in range(1,len(wordDict)):
-            return self.wordBreak(s[0:i],wordDict) and self.wordBreak(s[i:],wordDict)
-        
-        return False
+        result = False
+        for i in range(1,len(s)):
+            result =  result or (self.wordbreak(s[0:i],wordDict) and self.wordbreak(s[i:],wordDict))
+       
+        return result
