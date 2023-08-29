@@ -1,0 +1,12 @@
+https://leetcode.com/problems/word-break/
+-------------------------------------------------------------
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        if s in wordDict:
+            
+            return True
+        
+        for i in range(1,len(wordDict)):
+            return self.wordBreak(s[0:i],wordDict) and self.wordBreak(s[i:],wordDict)
+        
+        return False
