@@ -13,5 +13,43 @@ class Solution:
         return max(LIS)
 
 ---------------------------------------------------------------------------------
+Non DP solution: Time:o(nlogn) space:o(n)
+
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        ans = [nums[0]]
+
+        for i in range(1,len(nums)):
+            if nums[i]<ans[0]:
+                ans[0] = nums[i]
+            elif ans[-1] < nums[i]:
+                ans.append(nums[i])
+            else:
+                ans[self.binarysearch(ans,nums[i])] = nums[i]
+        # print(ans)
+        return len(ans)
+
+        
+    
+    def binarysearch(self,ans,element):
+        left = 0
+        right = len(ans) -1
+        mid = (left+right)//2
+        while(left<=right):
+            if element == ans[mid]:
+                return mid
+            elif element < ans[mid]:
+                right = mid - 1
+            else:
+                left = mid + 1
+            mid = (left+right)//2
+        # print(ans)
+        return left
+
+
+
+            
+
+
             
 
