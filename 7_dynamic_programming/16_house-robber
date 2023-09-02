@@ -1,0 +1,14 @@
+https://leetcode.com/problems/house-robber/
+---------------------------------------------------------------
+Recursive
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        return self.Rob(nums)
+    
+    def Rob(self,nums):
+        if len(nums) <= 2:
+            return max(nums)
+        return max(nums[0] + self.Rob(nums[2:]) , self.Rob(nums[1:]))
+
+-----------------------------------------------------------------------------
+Top down + memoization
