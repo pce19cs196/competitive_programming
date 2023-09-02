@@ -29,6 +29,34 @@ def subs(n, k, arr,length,dict1):
 
 
 ------------------------------------------------------------------------------------------
+Bottom up
+
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def subsetSumToK(n, k, arr):
+
+    # Write your code here
+    # Return a boolean variable 'True' or 'False' denoting the answer
+    memo = [[False for i in range(n)] for j in range(k+1)]
+    # print(memo)
+    for i in range(n):
+        memo[0][i] = True
+    if k >=arr[0]:
+        memo[arr[0]][0] = True
+    
+
+    for i in range(1,k+1):
+        for j in range(1,n):
+            memo[i][j] =memo[i][j] or memo[i][j-1]
+            if i>=arr[j]:
+                memo[i][j] =memo[i][j] or memo[i-arr[j]][j-1]
+            
+                
+    
+    return memo[-1][-1]
     
     
     
