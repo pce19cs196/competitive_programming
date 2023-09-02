@@ -29,7 +29,7 @@ def subs(n, k, arr,length,dict1):
 
 
 ------------------------------------------------------------------------------------------
-Bottom up
+Bottom up : Time:o(sum*n) space: o(sum*n) 
 
 from os import *
 from sys import *
