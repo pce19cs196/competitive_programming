@@ -29,5 +29,23 @@ class Solution:
 
         dict1[index] =  max(nums[index] + self.Rob(nums,index+2,dict1) , self.Rob(nums,index+1,dict1))
         return dict1[index]
+-------------------------------------------------------------------------------------------------------------
+Bottom up dp:
 
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        
+        if len(nums) ==1:
+            return nums[0]
+        elif len(nums) == 2:
+            return max(nums[0],nums[1])
+
+        memo = [0 for i in range(len(nums))]
+        memo[0] = nums[0]
+        memo[1] = max(nums[0], nums[1])
+
+        for i in range(2,len(nums)):
+            memo[i] = max(memo[i-2]+ nums[i],memo[i-1])
+        
+        return memo[-1]
         
