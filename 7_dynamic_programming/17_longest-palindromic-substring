@@ -1,0 +1,35 @@
+https://leetcode.com/problems/longest-palindromic-substring/submissions/
+--------------------------------------------------------------------------------------
+Time:o(n^2) space:o(n^2)
+
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        if len(s)<=1:
+            return s
+        memo =[[0 for i in range(len(s))] for j in range(len(s))]
+        for i in range(len(s)):
+            memo[i][i] = 1
+        start = 0
+        end = 0
+        for i in range(len(s)-1):
+            if s[i] == s[i+1]:
+                memo[i][i+1] = 1
+                start =i
+                end = i+1
+
+        dia = 2
+        
+        for i in range(len(s)-2):
+            for j in range(len(s)-dia):
+                # print(j," ",j+dia)
+                # print(memo[j+1]," ",memo[j+dia-1])
+                if s[j] == s[j+dia] and memo[j+1][j+dia-1] == 1:
+                    memo[j][j+dia] = 1
+                    start = j
+                    end = j+dia
+            dia+=1
+        
+        print(start," ",end)
+        return s[start:end+1]
+
+        
