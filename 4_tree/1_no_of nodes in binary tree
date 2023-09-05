@@ -1,5 +1,7 @@
 https://practice.geeksforgeeks.org/problems/count-number-of-nodes-in-a-binary-tree/1
 ------------------------------------------------------------------------------------------------------------------------------
+Recursive: Time:o(n) space:o(n)
+
 # Node Class:
 class Node:
     def init(self, val):
@@ -16,3 +18,6 @@ class Solution:
             return 1
         else:
             return 1+ self.countNodes(root.left) + self.countNodes(root.right)
+------------------------------------------------------------------------------------------------------------
+Iterative:Threaded binary tree: Time:o(n) space:o(1)
+
