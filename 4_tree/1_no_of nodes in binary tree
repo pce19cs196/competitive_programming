@@ -1,2 +1,18 @@
 https://practice.geeksforgeeks.org/problems/count-number-of-nodes-in-a-binary-tree/1
----------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------
+# Node Class:
+class Node:
+    def init(self, val):
+        self.data = val
+        self.left = None
+        self.right = None
+'''
+class Solution:
+    def countNodes(self, root):
+        #code here
+        if not root:
+            return 0
+        if not root.left and not root.right:
+            return 1
+        else:
+            return 1+ self.countNodes(root.left) + self.countNodes(root.right)
