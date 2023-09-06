@@ -1,0 +1,27 @@
+https://practice.geeksforgeeks.org/problems/mirror-tree/1?utm_source=geeksforgeeks&utm_medium=article_practice_tab&utm_campaign=article_practice_tab
+-----------------------------------------------------------------------------------------------
+#User function Template for python3
+
+'''
+class Node:
+    def _init_(self, val):
+        self.right = None
+        self.data = val
+        self.left = None
+'''
+# your task is to complete this function
+
+class Solution:
+    #Function to convert a binary tree into its mirror tree.
+    def mirror(self,root):
+        if not root:
+            return root
+        else:
+            temp = root.left
+            root.left = root.right
+            root.right = temp
+            self.mirror(root.left)
+            self.mirror(root.right)
+        # Code here
+--------------------------------------------------------------------------------------------------------------------
+
