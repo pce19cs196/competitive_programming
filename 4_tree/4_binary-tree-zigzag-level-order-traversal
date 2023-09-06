@@ -1,6 +1,7 @@
 https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
 -----------------------------------------------------------------------------------------------------------
-
+Same as level order but reverse the array in every odd cycle.
+Time:o(n^2) space:o(n)
 
 # Definition for a binary tree node.
 # class TreeNode:
@@ -29,12 +30,57 @@ class Solution:
             else:
                 ans.append(temp_ans)
             k+=1
-
-            
         
         return ans
+-----------------------------------------------------------------------------------
+Using two stacks
+Time:o(n) space:o(n)
     
             
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        if not root:
+            return []
+        stack1 = [root]
+        stack2 = []
+        ans = []
+        k = 0
+        while(len(stack1)>0 or len(stack2)>0):
 
+            temp_ans = []
+
+            if k%2 == 0:
+
+                child_size = len(stack1)
+                for i in range(child_size):
+                    temp = stack1.pop()
+                    temp_ans.append(temp.val)
+                    if temp.left : stack2.append(temp.left)
+                    if temp.right : stack2.append(temp.right)
+            else:
+
+                child_size = len(stack2)
+                for i in range(child_size):
+                    temp = stack2.pop()
+                    temp_ans.append(temp.val)
+                    if temp.right : stack1.append(temp.right)
+                    if temp.left : stack1.append(temp.left)
+            
+            ans.append(temp_ans)
+            k+=1
+        
+        return ans
+
+
+                
+
+
+        
 
         
