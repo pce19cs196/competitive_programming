@@ -1,5 +1,6 @@
 https://practice.geeksforgeeks.org/problems/mirror-tree/1?utm_source=geeksforgeeks&utm_medium=article_practice_tab&utm_campaign=article_practice_tab
 -----------------------------------------------------------------------------------------------
+Recursive : Time:o(n ) space: o(n)
 #User function Template for python3
 
 '''
@@ -24,4 +25,21 @@ class Solution:
             self.mirror(root.right)
         # Code here
 --------------------------------------------------------------------------------------------------------------------
+Iterative: Using queue
+Time:o(n ) space: o(n)
+class Solution:
+    #Function to convert a binary tree into its mirror tree.
+    def mirror(self,root):
+        if not root:
+            return
+        queue = [root]
+        while(len(queue)>0):
+            temp = queue[0].left
+            queue[0].left = queue[0].right
+            queue[0].right = temp
+            if queue[0].left : queue.append(queue[0].left)
+            if queue[0].right : queue.append(queue[0].right)
+            queue.pop(0)
+            
+        # Code here
 
