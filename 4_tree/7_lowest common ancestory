@@ -1,0 +1,42 @@
+https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/
+----------------------------------------------------------------------------------------------------
+mapping the problem to print ancestors of given node 
+
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        ls1 = []
+        ls2 = []
+     
+        self.parent(root,p,ls1)
+        self.parent(root,q,ls2)
+        
+        i = 0
+        for i in ls1:
+            if i in ls2:
+                return i
+
+
+    def parent(self,root,target,ls):
+        if not root:
+            return False
+        if root == target:
+            ls.append(root)
+            return True
+        
+        if (self.parent(root.left,target,ls) or self.parent(root.right,target,ls)):
+            ls.append(root)
+            return True
+        
+        return False
+  ----------------------------------------------------------------------------------------------------
+    
+        
