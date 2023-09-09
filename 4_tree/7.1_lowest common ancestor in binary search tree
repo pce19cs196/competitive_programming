@@ -81,3 +81,16 @@ class Solution:
             return self.lowestCommonAncestor(root.right,p,q)
 
         return root
+--------------------------------------------------------------------------------------------------
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        temp = root
+        while temp:
+            if temp.val > p.val and temp.val > q.val:
+                temp = temp.left
+            elif temp.val < p.val and temp.val < q.val:
+                temp = temp.right
+            else:
+                break
+        
+        return temp
