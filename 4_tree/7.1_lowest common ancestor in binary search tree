@@ -1,2 +1,42 @@
 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
 ------------------------------------------------------------------------------------------------------------
+create two lists to store the ancestor of the two given nodes 
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        ls1 = []
+        ls2 = []
+        temp = root
+        while temp:
+            ls1.append(temp)
+            if temp.val == p.val:
+                break
+            elif temp.val > p.val:
+                temp = temp.left
+            else:
+                temp = temp.right
+        
+        temp = root
+        while temp:
+            ls2.append(temp)
+            if temp.val == q.val:
+                break
+            elif temp.val > q.val:
+                temp = temp.left
+            else:
+                temp = temp.right
+        ls1.reverse()
+        for i in ls1:
+            if i in ls2:
+                return i
+        
+        return 0
+
+            
