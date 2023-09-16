@@ -1,0 +1,14 @@
+https://practice.geeksforgeeks.org/problems/maximum-sum-leaf-to-root-path/
+---------------------------------------------------------------------------------------------
+class Solution:
+    def maxPathSum(self, root):
+        #code here
+        if not root.left and not root.right:
+            return root.data
+        
+        elif root.left and root.right:
+            return root.data + max(self.maxPathSum(root.left),self.maxPathSum(root.right))
+        elif root.left:
+            return root.data + self.maxPathSum(root.left)
+        else:
+            return root.data + self.maxPathSum(root.right)
