@@ -1,0 +1,28 @@
+https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal
+-----------------------------------------------------------------------------------------------------
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+        return self.buildT(inorder,postorder)
+    
+    def buildT(self,inorder,postorder):
+
+        if not inorder or not postorder:
+            return None
+        if len(inorder) == 1:
+            return TreeNode(inorder[-1])
+        
+
+        Tree = TreeNode(postorder[-1])
+        index = inorder.index(postorder[-1])
+
+        Tree.left = self.buildT(inorder[:index],postorder[:index])
+        Tree.right = self.buildT(inorder[index+1:],postorder[index:len(postorder)-1])
+
+        return Tree
+        
