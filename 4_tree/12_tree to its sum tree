@@ -1,4 +1,4 @@
-https://practice.geeksforgeeks.org/problems/transform-to-sum-tree--170645/
+https://practice.geeksforgeeks.org/problems/transform-to-sum-tree/
 --------------------------------------------------------------------------------------------
 class Solution:
     def toSumTree(self, root) :
