@@ -49,7 +49,27 @@ class Solution {
         root->right = tree(inorder, inIndex+1, inHigh, postorder, poLow+countLeftElement, poHigh-1);
         return root;
     }
+----------------------------------------------------------------------------------------
+postorder ---> dictionary{val:index}
 
+class Solution:
+    def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+        dict1 = {}
+        self.index = len(postorder) -1
+        for i in range(len(inorder)):
+            dict1[inorder[i]] = i
+        
+        def traverse(low,high):
+            if low > high:
+                return None
+            root = TreeNode(postorder[self.index])
+            self.index -= 1
+            index = dict1[root.val]
+            root.right = traverse(index+1,high)
+            root.left = traverse(low,index-1)
+            return root
+        return traverse(0,len(inorder)-1)
+------------------------------------------------------------------------------------------
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
         return tree(inorder, 0, (inorder.size()-1), postorder, 0, (postorder.size()-1));
     }
