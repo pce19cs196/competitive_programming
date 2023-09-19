@@ -1,0 +1,22 @@
+https://leetcode.com/problems/diameter-of-binary-tree/
+----------------------------------------------------------------------------
+class Solution:
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        stack = [root]
+        maxDia = -sys.maxsize
+        while stack:
+            temp = stack.pop()
+            if temp.left : stack.append(temp.left)
+            if temp.right : stack.append(temp.right) 
+            height = self.getHeight(temp.left) + self.getHeight(temp.right) +2
+            if height > maxDia:
+                maxDia = height
+        return maxDia
+
+    
+    def getHeight(self,root):
+        if not root :
+            return -1
+        if  not root.left and not root.right:
+            return 0
+        return 1 + max(self.getHeight(root.left) , self.getHeight(root.right))
