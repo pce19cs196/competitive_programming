@@ -53,3 +53,23 @@ class Solution:
         dict1[root] =  1 + max(self.getHeight(root.left,dict1) , self.getHeight(root.right,dict1))
         return dict1[root]
 -------------------------------------------------------------------------------
+While performing dfs calculating dia at each level and storing max dia obtained and
+finally returning the value
+-------------------------------------------------------------------------------------
+class Solution:
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        self.maxDia = 0
+
+        def getDia(rootTree):
+            if not rootTree:
+                return -1
+            if not rootTree.left and not rootTree.right:
+                return 0
+            leftHeight = getDia(rootTree.left)
+            rightHeight = getDia(rootTree.right)
+            self.maxDia = max(self.maxDia,leftHeight+ rightHeight+2)
+
+            return 1 + max(leftHeight, rightHeight)
+        
+        getDia(root)
+        return self.maxDia
