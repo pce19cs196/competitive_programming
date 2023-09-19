@@ -28,4 +28,40 @@ def inOrder(root,ls):
     if root.left : inOrder(root.left,ls)
     ls.append(root.data)
     if root.right : inOrder(root.right,ls)
+----------------------------------------------------------------------------------------------
+class BinaryTreeNode:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+class Node:
+    def BTtoDLL(self,root):
+        self.dummy = BinaryTreeNode(0)
+        self.temp_dummy = self.dummy
+
+        def inOrder(root):
+
+            if root.left : inOrder(root.left)
+
+            node = BinaryTreeNode(root.data)
+            self.temp_dummy.right = node 
+            node.left = self.temp_dummy
+            self.temp_dummy = self.temp_dummy.right
+
+
+            if root.right : inOrder(root.right)
+        
+        inOrder(root)
+        self.dummy.right.left = None
+        return self.dummy.right
+
+  
+
+def BTtoDLL(root):
+    # Write your code here.
+    s1 = Node()
+
+
+    return s1.BTtoDLL(root)
     
