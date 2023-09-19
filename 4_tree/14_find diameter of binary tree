@@ -20,3 +20,36 @@ class Solution:
         if  not root.left and not root.right:
             return 0
         return 1 + max(self.getHeight(root.left) , self.getHeight(root.right))
+-----------------------------------------------------------------------------------------
+storing height at node
+-------------------------------------------------------------------------------
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        stack = [root]
+        maxDia = -sys.maxsize
+        dict1={}
+        while stack:
+            temp = stack.pop()
+            if temp.left : stack.append(temp.left)
+            if temp.right : stack.append(temp.right) 
+            height = self.getHeight(temp.left,dict1) + self.getHeight(temp.right,dict1) +2
+            if height > maxDia:
+                maxDia = height
+        return maxDia
+
+    
+    def getHeight(self,root,dict1):
+        if root in dict1 : return dict1[root]
+        if not root :
+            return -1
+        if  not root.left and not root.right:
+            return 0
+        dict1[root] =  1 + max(self.getHeight(root.left,dict1) , self.getHeight(root.right,dict1))
+        return dict1[root]
+-------------------------------------------------------------------------------
