@@ -1,0 +1,27 @@
+https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/
+------------------------------------------------------------------------------------------
+class Solution:
+    def verticalTraversal(self, root: Optional[TreeNode]) -> List[List[int]]:
+        dict1 = {}
+        self.Tree(root,dict1,0,0)
+        ans = []
+        
+        for i in sorted(dict1.keys()):
+            temp = []
+            for j in sorted(dict1[i]):
+                temp.append(j[1])
+            ans.append(temp)
+        return ans
+
+    
+    def Tree(self,root,dict1,i,j):
+        if not root:
+            return None
+        
+        if j not in dict1:
+            dict1[j] = [(i,root.val)]
+        else:
+            dict1[j].append((i,root.val))
+        
+        self.Tree(root.right,dict1,i+1,j+1)
+        self.Tree(root.left,dict1,i+1,j-1)
