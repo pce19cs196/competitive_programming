@@ -1,0 +1,15 @@
+https://leetcode.com/problems/range-sum-of-bst/description/
+------------------------------------------------------------------------------------
+class Solution:
+    def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
+        ans = 0
+        queue =[root]
+        while queue:
+            temp = queue.pop(0)
+            if temp.val>=low and temp.val<=high:
+                ans +=temp.val
+
+            if temp.left: queue.append(temp.left)
+            if temp.right: queue.append(temp.right)
+        return ans
+        
