@@ -128,3 +128,95 @@ class Codec:
 # ser = Codec()
 # deser = Codec()
 # ans = deser.deserialize(ser.serialize(root))
+----------------------------------------------------------------------------------
+  Idea2: use inorder along with null value
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Codec:
+  
+
+    def serialize(self, root):
+        """Encodes a tree to a single string.
+        
+        :type root: TreeNode
+        :rtype: str
+        """
+        if not root:
+            return ""
+        strData = ""
+        stack = [root]
+        while stack:
+            temp = stack.pop()
+            if temp == "N":
+                strData = strData + "N "
+                continue
+            else:
+                strData = strData + str(temp.val) + " "
+            if not temp.right:stack.append("N")
+            if temp.right: stack.append(temp.right)
+            if not temp.left: stack.append("N")
+            if temp.left: stack.append(temp.left)
+        
+        return strData
+
+        
+        
+
+    def deserialize(self, data):
+        """Decodes your encoded data to tree  
+        :type data: str
+        :rtype: TreeNode
+        """
+        if data == "":
+            return None
+        
+        ls = data.split()
+        print(ls)
+        
+        self.index = 0
+
+        def makeTree(ls):
+            if not ls:
+                return None
+            x = ls[self.index]
+            self.index +=1
+            if x=="N": return None
+
+            root = TreeNode(int(x))
+            root.left = makeTree(ls)
+            root.right = makeTree(ls)
+            return root
+        
+        root = makeTree(ls)
+
+        return root
+
+        
+
+        # root = None
+        # tempPtr = root
+        
+        # for s in data.split():
+        #     if not root:
+        #         root = TreeNode(int(s))
+        #         continue
+        #     if s=="N":
+        #         pass
+        #     else:
+        #         if i%2!=0:
+        #             root.left = TreeNode(int(s))
+        #         else:
+        #             root.right
+
+
+        
+
+# Your Codec object will be instantiated and called as such:
+# ser = Codec()
+# deser = Codec()
+# ans = deser.deserialize(ser.serialize(root))
