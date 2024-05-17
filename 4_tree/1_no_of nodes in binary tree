@@ -20,4 +20,25 @@ class Solution:
             return 1+ self.countNodes(root.left) + self.countNodes(root.right)
 ------------------------------------------------------------------------------------------------------------
 Iterative:Threaded binary tree: Time:o(n) space:o(1)
+-------------------------------------------------------------------------------------------------------------
+ int countNodes(Node* root) {
+        if (!root) return 0;
+        
+        int lh = 0, rh = 0;
+        Node *ptr_r = root, *ptr_l = root;
+        while (ptr_l){
+            
+            ptr_l=ptr_l->left;
+            lh++;                   //TC: O((LogN)^2)
+        }
+        while (ptr_r){
+            
+            ptr_r=ptr_r->right;
+            rh++;
+        }
+        
+        
+        if (lh == rh) return pow(2, lh) - 1; // complete binary tree ki hieght 2^level-1 
+        return 1 + countNodes(root->left) + countNodes(root->right);
+    }
 
