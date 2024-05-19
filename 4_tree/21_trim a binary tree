@@ -1,0 +1,24 @@
+Extension of range sum of bst
+-----------------------------------------------------
+https://leetcode.com/problems/trim-a-binary-search-tree/
+--------------------------------------------------------
+class Solution:
+    def trimBST(self, root: Optional[TreeNode], low: int, high: int) -> Optional[TreeNode]:
+        
+
+        def maketree(root):
+            if not root:
+                return None
+            if root.val>=low and root.val <=high:
+                root.left = maketree(root.left)
+                root.right =  maketree(root.right)
+                return roote
+
+            if root.val <= low:
+                return maketree(root.right)
+            else:
+                return maketree(root.left)
+        
+        
+        return maketree(root)
+
