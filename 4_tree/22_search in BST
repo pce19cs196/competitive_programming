@@ -1,0 +1,44 @@
+https://leetcode.com/problems/trim-a-binary-search-tree/solutions/107013/clear-python-solution/
+--------------------------------------------------------------
+Time: o(height) == o(n)
+space: Recursion stack === o(height) == o(n)
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def trimBST(self, root: Optional[TreeNode], low: int, high: int) -> Optional[TreeNode]:
+        
+
+        def maketree(root):
+            if not root:
+                return None
+            if root.val>=low and root.val <=high:
+                root.left = maketree(root.left)
+                root.right =  maketree(root.right)
+                return root
+
+            if root.val <= low:
+                return maketree(root.right)
+            else:
+                return maketree(root.left)
+        
+        
+        return maketree(root)
+
+-----------------------------------------------------------------------------
+
+Iterative: No recursion stack:
+Time: o(height) == o(n)
+space: o(1)
+
+
+public TreeNode searchBST(TreeNode root, int val) {
+        while(root != null && root.val != val){
+            root = val<root.val? root.left:root.right;
+        }
+        return root;
+    }
