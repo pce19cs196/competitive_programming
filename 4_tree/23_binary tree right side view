@@ -1,0 +1,28 @@
+https://leetcode.com/problems/binary-tree-right-side-view/
+-----------------------------------------------------------------------------------------------
+Approach: level order traversal --> append only last element
+Time: o(n) , space: o(h)==o(n)
+
+---------------------------------------------------------------------------------------------
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        ans = []
+        queue = [root]
+
+        while len(queue)>0:
+            children = len(queue)
+            for i in range(children):
+                temp = queue[0]
+                if temp:
+                    if i == children-1:
+                        ans.append(temp.val)
+
+                    if temp.left: queue.append(temp.left)
+                    if temp.right: queue.append(temp.right)    
+                queue.pop(0)    
+
+        return ans        
+
+
+            
+        
