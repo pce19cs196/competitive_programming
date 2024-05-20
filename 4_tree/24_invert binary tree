@@ -1,5 +1,31 @@
 https://leetcode.com/problems/invert-binary-tree/description/
 --------------------------------------------------------------------------
-Approach1: level order traversal --> after each level remodify the elements
+Approach1: level order traversal --> at each level remodify the elements
 Time: o(n)
-space: o(n) + o(n)
+space: o(h) == o(n)
+------------------------------------------------------------------
+
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        queue = [root]
+
+        while len(queue)>0:
+            children = len(queue)
+
+            for i in range(children):
+                temp = queue[0]
+                if temp:
+                    temp1 = temp.left                           // exhanging the elements .
+                    temp.left = temp.right
+                    temp.right =  temp1   
+                    
+                    if temp.left: queue.append(temp.left)               // The element will be pushed in revered order. It will take care for the next level for overall reversal
+                    if temp.right: queue.append(temp.right) 
+
+                    
+                queue.pop(0)   
+             
+
+        return root        
+
+        
