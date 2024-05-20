@@ -1,0 +1,24 @@
+https://leetcode.com/problems/leaf-similar-trees/description/
+---------------------------------------------------------------------------------------
+Time:o(n)+o(n)  space:o(h) + o(n) + o(n)
+
+class Solution:
+    def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
+
+        def preorder(root,leadnodes):
+            if not root:
+                return
+            if root and not root.left and not root.right:
+                leadnodes.append(root.val)
+
+            preorder(root.left,leadnodes)
+            preorder(root.right,leadnodes)
+        
+        first =[]
+        second = []
+        preorder(root1,first)
+        preorder(root2,second)
+
+        return first == second
+----------------------------------------------------------------------------------------------
+Can we improve on time complexity by not using two lists ??
