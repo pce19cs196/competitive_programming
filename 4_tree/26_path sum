@@ -1,0 +1,16 @@
+https://leetcode.com/problems/path-sum
+--------------------------------------------------
+Time: o(n) , space: o(h) == o(n)
+-------------------------------------------------
+class Solution:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        if not root:
+            return False
+        
+        elif root and not root.left and not root.right:
+            return (targetSum - root.val) == 0
+
+
+        return self.hasPathSum(root.left,targetSum - root.val) or self.hasPathSum(root.right,targetSum - root.val)
+        
+        
