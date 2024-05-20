@@ -21,4 +21,53 @@ class Solution:
 
         return first == second
 ----------------------------------------------------------------------------------------------
-Can we improve on time complexity by not using two lists ??
+Can we improve on time complexity by not using two lists ?? : 
+Why only rightmost side leaf is checked first? 
+I tried checking leftmost leaf first. Doesnt work... why?
+
+
+
+--------------------------------------------------------------------
+                                                                   |
+ bool leafSimilar(TreeNode* root1, TreeNode* root2) {              |
+        stack<TreeNode*> s1 , s2;                                  |
+        s1.push(root1); s2.push(root2);                            |
+        while (!s1.empty() && !s2.empty())                         |
+            if (dfs(s1) != dfs(s2)) return false;                  |
+        return s1.empty() && s2.empty();                           |
+    }                                                              |
+                                                                   |
+    int dfs(stack<TreeNode*>& s) {                                 |
+        while (true) {                                             |
+            TreeNode* node = s.top(); s.pop();                     |
+            if (node->right) s.push(node->right);                  |
+            if (node->left) s.push(node->left);                    |
+            if (!node->left && !node->right) return node->val;     |
+        }                                                          |
+    }                                                              |
+----------------------------------------------------------------------
+
+
+
+My code:
+
+
+class Solution:
+    def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
+        
+        stack1 = [root1]
+        stack2 = [root2]
+        while len(stack1)>0 and len(stack2)>0:
+            if self.preorder(stack1) != self.preorder(stack2) : return False
+
+        return len(stack1) ==0 and len(stack2) ==0
+    
+    def preorder(self,stack):
+        while len(stack) > 0 :
+            temp = stack.pop()
+            if temp.right: 
+                stack.append(temp.right)
+            if temp.left: 
+                stack.append(temp.left)
+            if temp and not temp.left and not temp.right:
+                return temp.val
