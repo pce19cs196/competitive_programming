@@ -1,0 +1,5 @@
+https://leetcode.com/problems/invert-binary-tree/description/
+--------------------------------------------------------------------------
+Approach1: level order traversal --> after each level remodify the elements
+Time: o(n)
+space: o(n) + o(n)
