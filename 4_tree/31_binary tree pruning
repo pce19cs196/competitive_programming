@@ -1,0 +1,40 @@
+https://leetcode.com/problems/binary-tree-pruning/
+------------------------------------------------------------------
+Approach: Traverse through each node and for each node see if               left subtree      or     right subtree contains one .
+                                                                   (dfs--inorder/pre/post)            (dfs--inorder/pre/post)
+          We can use dictionary in the dfs code to optimize
+
+          Time:o(n) space:o(h) + o(n)
+                                 dict
+
+
+class Solution:
+    def pruneTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        
+        dictNodes = {}
+        queue = [root]
+        while len(queue)>0:
+            temp = queue.pop(0)
+            if self.containsOne(temp.left,dictNodes) :
+                queue.append(temp.left)
+            else:
+                temp.left = None
+            if self.containsOne(temp.right,dictNodes) :
+                queue.append(temp.right)
+            else:
+                temp.right = None
+        if root and not root.val and not root.left and not root.right: return None
+        return root
+
+
+    
+    def containsOne(self,root,dictNodes):
+        if not root : return 0
+        if root in dictNodes:
+            return dictNodes[root]
+        dictNodes[root] = root.val or self.containsOne(root.left,dictNodes) or self.containsOne(root.right,dictNodes)
+        return  dictNodes[root]
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+ 
