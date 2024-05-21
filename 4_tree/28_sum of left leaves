@@ -1,0 +1,13 @@
+https://leetcode.com/problems/sum-of-left-leaves/description/
+------------------------------------------------------------------------------------------------
+class Solution:
+    def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
+        self.ans = 0
+        def sumLeaves(root,flag):
+            if not root: return 0 
+            if not root.left and not root.right and flag: self.ans +=root.val
+            if root.left : sumLeaves(root.left,1)
+            if root.right : sumLeaves(root.right,0)
+        sumLeaves(root,0)
+
+        return self.ans
