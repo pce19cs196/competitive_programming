@@ -1,0 +1,19 @@
+https://leetcode.com/problems/maximum-binary-tree/description/
+-----------------------------------------------------------------------------------------------------
+Approach: Find max element ,  built tree , recurively build right and left subtree by slicing the array
+Time: o(n^2)           : At each step we are finding the maximum element in the array
+space:o(h) == o(n)
+
+class Solution:
+    def constructMaximumBinaryTree(self, nums: List[int]) -> Optional[TreeNode]:
+        if not nums:
+            return None
+        maxelement = max(nums)
+        maxindex = nums.index(maxelement)
+        root = TreeNode(maxelement)
+        root.left = self.constructMaximumBinaryTree(nums[:maxindex])
+        root.right = self.constructMaximumBinaryTree(nums[maxindex+1:])
+        return root
+
+
+--------------------------------------------------------------------------------------------------
