@@ -1,5 +1,40 @@
 https://leetcode.com/problems/binary-tree-pruning/
 ------------------------------------------------------------------
+
+for any node, the return value should be , False : if(curr.left ==None and curr.right ==None and root.val ==0 ) 
+                                          True : otherwise
+Time:o(n)  space : o(h) == o(n)
+
+
+
+ def pruneTree(self, root):
+        if not root: return None
+        root.left = self.pruneTree(root.left)
+        root.right = self.pruneTree(root.right)
+        if not root.left and not root.right and not root.val: return None
+        return root
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------
 Approach: Traverse through each node and for each node see if               left subtree      or     right subtree contains one .
                                                                    (dfs--inorder/pre/post)            (dfs--inorder/pre/post)
           We can use dictionary in the dfs code to optimize
