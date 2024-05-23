@@ -2,6 +2,7 @@ https://leetcode.com/problems/maximum-binary-tree/description/
 -----------------------------------------------------------------------------------------------------
 idea: https://leetcode.com/problems/maximum-binary-tree/solutions/106147/c-8-lines-on-log-n-map-plus-stack-with-binary-search/
 
+Time:o(n)
 
 
 class Solution(object):
