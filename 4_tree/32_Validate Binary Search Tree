@@ -25,4 +25,27 @@ class Solution:
 
 -----------------------------------------------------------------------------------------
 Q: Cant i simply compare the root value with val of left child and right child?
-Ans: would be very complicated since, every element in the left subtree should be smaller than the root element and every element in the right subtree should be greater than root
+It would be very complicated since, every element in the left subtree should be smaller than the root element and every element in the right subtree should be greater than root.
+
+Approach: use lower and upper limit.
+          Intially lower = -∞ , upper = ∞ 
+          compare if root.val >lower and root.val < upper
+          if true then for left child ,recursively update:  lower = lower , upper = root.val
+                       for right child , recursively update : lower = root.val upper = upper
+Time: o(n)  space:o(h) == o(n)
+
+
+
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        return self.checkTree(root,-sys.maxsize,sys.maxsize)
+
+    
+    def checkTree(self,root,lowerValue,upperValue):
+        if not root : return True
+        if root.val > lowerValue and root.val < upperValue:
+            return self.checkTree(root.left,lowerValue,root.val) and self.checkTree(root.right,root.val,upperValue)
+        return False
+
+
+-----------------------------------------------------------------------------------------------------------------------
