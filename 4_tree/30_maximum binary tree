@@ -1,7 +1,10 @@
 https://leetcode.com/problems/maximum-binary-tree/description/
 -----------------------------------------------------------------------------------------------------
 Approach: Find max element ,  built tree , recurively build right and left subtree by slicing the array
-Time: o(n^2)           : At each step we are finding the maximum element in the array
+Time: o(n^2)           : At each step we are finding the maximum element in the array . The array split may be skewed (1:n-1) in worst case
+                        Best case: T(n) = 2*T(n/2) + o(n)
+                        worst case :  T(n) = T(n-1) + o(n)
+
 space:o(h) == o(n)
 
 class Solution:
