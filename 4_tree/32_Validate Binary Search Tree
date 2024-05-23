@@ -1,0 +1,28 @@
+https://leetcode.com/problems/validate-binary-search-tree/description/
+---------------------------------------------------------------------------------
+Approach: Inorder traversal --> should give sorted array 
+         Time: o(n)
+         space:o(stack_height) = o(n)      //Dont store the values  in an array , rather simply compare the prev value with next value and check if in increasing order.
+
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        currval = -sys.maxsize
+        stack = []
+        while root or stack:
+            while root:
+                stack.append(root)
+                root = root.left
+            if stack:
+                root = stack.pop()
+                if root :
+                    if root.val > currval:
+                        currval = root.val 
+                    else:
+                        return False
+                root = root.right
+        
+        return True
+
+-----------------------------------------------------------------------------------------
+Q: Cant i simply compare the root value with val of left child and right child?
+Ans: would be very complicated since, every element in the left subtree should be smaller than the root element and every element in the right subtree should be greater than root
