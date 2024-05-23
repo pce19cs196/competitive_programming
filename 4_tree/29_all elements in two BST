@@ -1,5 +1,36 @@
 https://leetcode.com/problems/all-elements-in-two-binary-search-trees/description/
 --------------------------------------------------------------------------------------
+Approach: Use iterative inorder , whenever leaf node is encountered ,compare the leaf nodes , pop only that leaf node whose value is smaller
+          Time: o(n+m)
+          space:  o(n)            +    o(m) 
+                 inorder stack        inorder stack               (not counting result in space complexity
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------
 Approach: Inorder gives sorted list of elements.
           Apply inorder on both the trees . Store the sorted array . Apply merge operation
 
