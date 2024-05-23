@@ -2,6 +2,8 @@ https://leetcode.com/problems/maximum-binary-tree/description/
 -----------------------------------------------------------------------------------------------------
 idea: https://leetcode.com/problems/maximum-binary-tree/solutions/106147/c-8-lines-on-log-n-map-plus-stack-with-binary-search/
 
+uses idea of cartesian tree : https://en.wikipedia.org/wiki/Cartesian_tree
+
 Time:o(n)
 
 
