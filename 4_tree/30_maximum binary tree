@@ -1,5 +1,39 @@
 https://leetcode.com/problems/maximum-binary-tree/description/
 -----------------------------------------------------------------------------------------------------
+idea: https://leetcode.com/problems/maximum-binary-tree/solutions/106147/c-8-lines-on-log-n-map-plus-stack-with-binary-search/
+
+
+
+class Solution(object):
+    def constructMaximumBinaryTree(self, arr):
+        """
+        :type nums: List[int]
+        :rtype: TreeNode
+        """
+        stack = []
+        for num in arr:
+            cur = TreeNode(num)
+            while stack and stack[-1].val < cur.val:
+                cur.left = stack.pop()
+            if stack:
+                stack[-1].right = cur 
+            stack.append(cur)
+        return stack[0]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------
 Approach: Find max element ,  built tree , recurively build right and left subtree by slicing the array
 Time: o(n^2)           : At each step we are finding the maximum element in the array . The array split may be skewed (1:n-1) in worst case
                         Best case: T(n) = 2*T(n/2) + o(n)
