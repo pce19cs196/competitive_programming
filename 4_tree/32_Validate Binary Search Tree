@@ -49,3 +49,20 @@ class Solution:
 
 
 -----------------------------------------------------------------------------------------------------------------------
+
+Iterative code of above approach:
+
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        stack = [(root , -sys.maxsize , sys.maxsize)]
+
+        while stack:
+            temproot , lower , upper = stack.pop()
+            if not temproot: continue
+            value = temproot.val
+            if value<=lower or value >=upper:
+                return False
+            stack.append((temproot.right,value,upper))
+            stack.append((temproot.left,lower,value))
+        
+        return True
