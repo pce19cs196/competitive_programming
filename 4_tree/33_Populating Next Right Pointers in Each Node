@@ -22,3 +22,27 @@ class Solution:
             if queue :
                 queue.append(None)
         return root
+------------------------------------------------------------------------------------------------------------
+Making use of next pointer as well while traversal.
+Time: o(n)  , space : o(1)
+
+    void connect(TreeLinkNode *root) {
+        TreeLinkNode* level_start = root;
+        
+        while(level_start!=NULL)
+        {
+            //curr is the first node in that level
+            TreeLinkNode* curr = level_start;
+            
+            //Keep going to the right in that level
+            while(curr!=NULL)
+            {
+                if(curr->left!=NULL) curr->left->next=curr->right;
+                if(curr->right!=NULL && curr->next!=NULL) curr->right->next=curr->next->left;
+                
+                curr = curr->next;
+            }
+            level_start=level_start->left;
+        }
+        
+    }
