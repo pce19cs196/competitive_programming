@@ -1,0 +1,42 @@
+https://leetcode.com/problems/kth-smallest-element-in-a-bst
+-------------------------------------------------------------------------
+Approach: use iterative inorder
+Time: o(n) , space: o(stack_height) == o(n)
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+       stack = []
+       index = 0
+
+       while root or stack:
+        while root:
+            stack.append(root)
+            root = root.left
+        if stack:
+            root = stack.pop()
+            if root:
+                index+=1
+                if index == k:
+                    return root.val
+            root = root.right
+    
+       return -1
+---------------------------------------------------------------------------------
+Using recursive
+
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        if not root: return -1
+        self.currindex = 0
+        self.temp = None
+
+    
+        def ksmallest(root):
+            if root.left:  ksmallest(root.left)
+            self.currindex +=1
+            if self.currindex == k:
+                self.temp = root
+                return
+            if root.right:  ksmallest(root.right)
+        
+        ksmallest(root)
+        return self.temp.val
