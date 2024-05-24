@@ -1,6 +1,64 @@
 https://leetcode.com/problems/next-greater-element-i/description/
 -----------------------------------------------------------------------------
-Approach1  : Simply search each value of nums1 from the end of nums2.
+
+Key observation:
+Suppose we have a decreasing sequence followed by a greater number
+For example [5, 4, 3, 2, 1, 6] then the greater number 6 is the next greater element for all previous numbers in the sequence
+
+We use a stack to keep a decreasing sub-sequence, whenever we see a number x greater than stack.peek() we pop all elements less than x and for all the popped ones,
+their next greater element is x
+For example [9, 8, 7, 3, 2, 1, 6]
+The stack will first contain [9, 8, 7, 3, 2, 1] and then we see 6 which is greater than 1 so we pop 1 2 3 whose next greater element should be 6
+
+Time: o(n)
+space:o(n) + o(n)
+     stack  dictionary
+
+
+
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        dict1= {}
+        for i in nums2:
+            dict1[i] = -1
+        stack = []
+        stack.append(nums2[0])
+
+        for i in range(1,len(nums2)):
+            num = nums2[i]
+            if num<stack[-1]:
+                stack.append(num)
+            else:
+                while stack and stack[-1] < num:
+                    dict1[stack.pop()] = num
+                stack.append(num)
+        
+        ans =[]
+        for i in nums1:
+            ans.append(dict1[i])
+        
+        return ans
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------
+Approach  : Simply search each value of nums1 from the end of nums2.
              Time : o(n^2)                space : o(1)
 
 
