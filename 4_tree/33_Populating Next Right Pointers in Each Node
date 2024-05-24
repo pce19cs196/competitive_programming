@@ -1,0 +1,24 @@
+https://leetcode.com/problems/populating-next-right-pointers-in-each-node/description/
+---------------------------------------------------------------------------------------------------------
+Use level order traversal:
+Append an extra Null value at the end of each level. Use previous and next pointer
+   Time: o(n) space: o(h) == o(n)
+
+
+class Solution:
+    def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
+        if not root: return None
+        queue = [root]
+        queue.append(None)
+        while queue:
+            numchild = len(queue)
+            prev = queue.pop(0)
+            for i in range(1,numchild):
+                nextNode = queue.pop(0)
+                prev.next = nextNode
+                if prev.left:queue.append( prev.left)
+                if prev.right:queue.append( prev.right)
+                prev = nextNode
+            if queue :
+                queue.append(None)
+        return root
