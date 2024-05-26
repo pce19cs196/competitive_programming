@@ -1,0 +1,28 @@
+https://www.geeksforgeeks.org/problems/the-celebrity-problem/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article
+----------------------------------------------------------------------------------------------------------------------------------------------------
+Brute force:
+Iterate column wise. All the values in the celebrity column would be 1 except for itself. Return the index of that column
+
+Time: o(n^2) space: o(1)
+
+
+
+class Solution:
+    def celebrity(self, M, n):
+        for j in range(n):
+            flag = 1
+            for i in range(n):
+                if M[i][j] == 0 and i != j:
+                    flag = 0
+                    break
+            if flag:
+                for i in range(n):
+                   if M[j][i] == 1:
+                        flag = 0
+                        break
+                
+                if flag:
+                    return j
+
+        return -1
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
