@@ -1,7 +1,7 @@
 https://leetcode.com/problems/online-stock-span/
 ------------------------------------------------------------------
 refer : https://leetcode.com/problems/online-stock-span/solutions/636856/single-stack-explanation-with-diagram/
-Time : o(n) , space: o(1)
+Time : o(n) , space: o(n)
 
 
 class StockSpanner {
