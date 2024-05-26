@@ -1,5 +1,102 @@
 https://leetcode.com/problems/online-stock-span/
 ------------------------------------------------------------------
+refer : https://leetcode.com/problems/online-stock-span/solutions/636856/single-stack-explanation-with-diagram/
+Time : o(n) , space: o(1)
+
+
+class StockSpanner {
+public:
+    stack<pair<int,int>> sk;
+    StockSpanner() {    }
+    
+    int next(int price) {
+	
+        int ct = 1;
+        while(sk.size() and sk.top().first <= price)    // as shown in during Dry run on sample input
+				ct+=sk.top().second , sk.pop();            // we add count of poped element's count
+				
+        sk.push({price , ct});
+        return ct;
+    }
+};
+
+
+
+
+
+
+
+---------------------------------------------------------------------------
+
+My solution:
+Time: o(n) overall (Amortized time complexity)
+space : o(n) + o(n)
+
+Approach: In stack store the index of the price array . 
+         if current price is great the price[top stack value] , then keep popping
+         return currindex - topstack
+
+class StockSpanner:
+
+    def __init__(self):
+        self.arr= []
+        self.stack = []
+        self.currindex = 0
+    
+
+    def next(self, price: int) -> int:
+        if not self.arr:
+            self.arr.append(price)
+            self.stack.append(self.currindex)
+            return 1
+
+        self.arr.append(price)
+        self.currindex +=1
+        
+        while self.stack and self.arr[self.stack[-1]] <= price:
+            self.stack.pop()
+        
+        if self.stack:
+            ans = self.currindex - self.stack[-1]
+        else:
+            ans = self.currindex +1
+        
+
+        self.stack.append(self.currindex)
+
+        return ans
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------
 Approach1 : Brute force
             Time : o(n) for each operation
 class StockSpanner:
