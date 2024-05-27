@@ -1,5 +1,14 @@
 https://www.geeksforgeeks.org/problems/the-celebrity-problem/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article
 ----------------------------------------------------------------------------------------------------------------------------------------------------
+Leetcode : https://leetcode.ca/2016-09-02-277-Find-the-Celebrity/
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
 Brute force:
 Iterate column wise. All the values in the celebrity column would be 1 except for itself. Return the index of that column
 
