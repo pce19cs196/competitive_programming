@@ -1,5 +1,42 @@
 https://leetcode.com/problems/implement-stack-using-queues/
 -------------------------------------------------------------------------
+Approach : use one queue. 
+           make insertion : o(n) : Append the element in the queue. Next run a for loop for size(Queue) -1 and 
+                                  perform operation:  queue.append(queue.popleft())
+                                 Elements will be in the reversed order
+                                 
+                              
+          all other operations : o(1)
+
+
+from collections import deque 
+
+class MyStack:
+
+    def __init__(self):
+        self.queue = deque()
+        
+
+    def push(self, x: int) -> None:
+        self.queue.append(x)
+        for _ in range(len(self.queue)-1):
+            self.queue.append(self.queue.popleft())
+
+
+    def pop(self) -> int:
+        return self.queue.popleft()
+        
+
+    def top(self) -> int:
+        return self.queue[0]
+
+    def empty(self) -> bool:
+        return not self.queue
+        
+
+
+
+------------------------------------------------------------------------------
 Approach : use two queues. 
            make insertion : o(n)
           all other operations : o(1)
