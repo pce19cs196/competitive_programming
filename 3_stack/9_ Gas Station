@@ -1,0 +1,31 @@
+https://leetcode.com/problems/gas-station/description/
+------------------------------------------------------------------------------------------------------------
+Time: o(n) space: o(1)
+Approach : Whenever we encounter the first positive gas[i] - cost[i] , then that station(i) may be my potential answer. 
+           start adding ans+= gas[i] - cost[i] from that index onwards . Whenever sum becomes -ve discard that index(station) and search for new
+           positive gas[i] - cost[i]
+
+class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+     
+        ansindex = -1
+        ans = 0
+        for i in range(len(gas)):
+            tempsum = gas[i] - cost[i]
+            if ansindex == -1 and tempsum >= 0:
+                ansindex = i
+            if ansindex >= 0:
+                ans += tempsum
+            if ans < 0 :
+                ansindex = -1
+                ans = 0
+        if ansindex == -1:
+            return -1
+
+        for i in range(0,ansindex+1):                  #circular rotation sum should also not be -ve at any point.
+            ans += gas[i] - cost[i]
+            if ans<0:
+                return -1
+        
+        return ansindex
+----------------------------------------------------------------------------------------------------------------------------------------------
