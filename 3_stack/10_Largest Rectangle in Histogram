@@ -9,7 +9,7 @@ eg: [2,1,5,6,2,3]          height width
     Rectange of height 2 :    2  *  4
     Rectange of height 3 :    3  *  1
 
-Approach:For each height , i will try to expand its left index and rightindex (Inorder to find the max width)
+Approach:For each height , i will try to find out it max width by expand its left index and rightindex 
 Time: o(n^2) space : o(1)
 
 class Solution:
