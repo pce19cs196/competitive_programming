@@ -1,0 +1,37 @@
+https://leetcode.com/problems/largest-rectangle-in-histogram/description/
+------------------------------------------------------------------------------------------
+Brute force: Try to find out rectangles of all the height
+eg: [2,1,5,6,2,3]          height width
+    Rectange of height 2 :    2  *  1
+    Rectange of height 1 :    1  *  6
+    Rectange of height 5 :    5  *  2
+    Rectange of height 6 :    6  *  1
+    Rectange of height 2 :    2  *  4
+    Rectange of height 3 :    3  *  1
+
+Approach:For each height , i will try to expand its left index and rightindex (Inorder to find the max width)
+Time: o(n^2) space : o(1)
+
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        maxheight = -sys.maxsize
+
+        for i in range(len(heights)):
+            leftindex = i 
+            rightindex = i
+            while leftindex >=0 and heights[i] <= heights[leftindex]:
+                leftindex-=1
+
+            leftindex +=1    
+            
+            while rightindex < len(heights) and heights[i] <= heights[rightindex]:
+                rightindex +=1
+            
+            rightindex -=1
+
+            if (rightindex - leftindex + 1)*heights[i] > maxheight:
+                maxheight = (rightindex - leftindex + 1)*heights[i]
+        return maxheight
+
+-----------------------------------------------------------------------------------------------------------------------------------
+    
