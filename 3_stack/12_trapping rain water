@@ -1,6 +1,9 @@
 https://leetcode.com/problems/trapping-rain-water/
 -------------------------------------------------------------
 Refer copy:
+-------------------------------------------------------------
+https://ibb.co/RBHt8CT
+
 -----------------------------------------------------------
 Time: o(n)  space: o(n)
 Approach : In stack , store the indices in decreasing order of height
