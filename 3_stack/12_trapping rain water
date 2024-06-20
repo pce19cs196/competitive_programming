@@ -1,0 +1,26 @@
+https://leetcode.com/problems/trapping-rain-water/
+-------------------------------------------------------------
+Refer copy:
+------------------------------------------------------------
+Space: o(n) , time : o(n)
+
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        leftmost = [0 for _ in range(len(height))]
+        rightmost = [0 for _ in range(len(height))]
+
+        leftmost[0] = height[0]
+        rightmost[-1] = height[-1]
+
+        for i in range(1,len(height)):
+            leftmost[i] = max(leftmost[i-1], height[i])
+        
+        for i in range(len(height)-2 , -1 , -1):
+            rightmost[i] = max(rightmost[i+1], height[i])
+        
+        storedwater = 0
+        
+        for i in range(len(height)):
+            storedwater += (min(leftmost[i],rightmost[i]) - height[i])
+        
+        return storedwater
