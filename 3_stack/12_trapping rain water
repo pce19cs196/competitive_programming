@@ -1,6 +1,47 @@
 https://leetcode.com/problems/trapping-rain-water/
 -------------------------------------------------------------
 Refer copy:
+-----------------------------------------------------------
+Time: o(n)  space: o(n)
+Approach : In stack , store the indices in decreasing order of height
+check 22 part of stack
+
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        stack = []
+        storedwater = 0
+
+        for i in range(len(height)):
+            if not stack : 
+                stack.append(i)
+                continue
+            
+            while height[stack[-1]] < height[i]:              // Keep popping until current height is less than top
+                temp = stack.pop()
+                if not stack:
+                    break
+                              // distance b/w leftmost and rightmost            // leftmostheight will be top // righmostheight will be current  // subtracting the height for which i am calculating height
+                distance = (i - stack[-1] - 1)                       *                (min(height[stack[-1]]      ,height[i]) -                            height[temp])
+                storedwater += distance
+            
+            stack.append(i)
+        
+        return storedwater
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------
+Refer copy:
 ------------------------------------------------------------
 Space: o(n) , time : o(n)
 
