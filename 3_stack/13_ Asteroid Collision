@@ -3,6 +3,11 @@ https://leetcode.com/problems/asteroid-collision/description/
 Approach: using stack , only need to pop out the elements when one rock is moving in the right direction and second rock is moving in the left direction
                                                                  (+ve value)                                     (-ve value)
 
+
+Teacher : https://ibb.co/NTph306
+
+
+
 Time: o(n) , space: o(n)
 class Solution:
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
