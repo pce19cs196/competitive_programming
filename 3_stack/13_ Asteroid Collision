@@ -1,9 +1,32 @@
 https://leetcode.com/problems/asteroid-collision/description/
 --------------------------------------------------------------------------------
-Two pointer approach
+Note: standard is stack based approach
+Two pointer approach , refer video solution
 Time:o(n) space: o(1)
 
+class Solution:
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        i = -1
+        for j in range(len(asteroids)):
+            while i >= 0 and asteroids[i] >= 0 and asteroids[j] < 0:
+                if abs(asteroids[j]) > asteroids[i]:
+                    i -= 1
+                    continue
+                elif abs(asteroids[j]) == asteroids[i]:
+                    i -= 1
+                break                          #The break will be outside as if current is -ve and its smaller than the last asteroid value, then we dont need to do anything
+            else:
+                asteroids[i+1] = asteroids[j]
+                i +=1
+        
+        return asteroids[:i+1]
 
+
+
+                
+
+
+        
 
 
 
