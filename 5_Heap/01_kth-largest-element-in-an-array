@@ -1,5 +1,25 @@
 https://leetcode.com/problems/kth-largest-element-in-an-array/
 ----------------------------------------------------------------------------------------
+Approach: using min heap , we will maintain the size of k elements in heap
+         At the end of kth largest element will be present at the root
+ Time: O(n logk)  space: log(k)
+
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        arr = []
+        heapq.heapify(arr)
+
+        for i in nums:
+            heapq.heappush(arr,i)
+            if len(arr)>k:
+                heapq.heappop(arr)
+        
+        return arr[0]
+
+
+
+------------------------------------------------------------------------------------
 Method1 :  Using partition
 Average Time : o(n)
 worst case : o(n^2)
