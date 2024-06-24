@@ -1,0 +1,27 @@
+https://www.geeksforgeeks.org/problems/minimum-cost-of-ropes-1587115620/1
+------------------------------------------------------------------------------------------
+Approach1 : use min heap , pop out two smallest elements , push back the sum of the two smallest elements
+Time: o(nlogn)
+import heapq
+class Solution:
+    #Function to return the minimum cost of connecting the ropes.
+    def minCost(self,arr,n) :
+        heapq.heapify(arr)
+        sum1 = 0
+        while len(arr) > 1:
+            ele1 = heapq.heappop(arr)
+            ele2 = heapq.heappop(arr)
+            new_ele = ele1 + ele2
+            heapq.heappush(arr,new_ele)
+            sum1 += new_ele
+        return sum1
+
+
+
+------------------------------------------------------------------------------------------
+Approach2 : Step1 : sort the array                                                            // o(nlogn)
+                       [ 1 ,2,3,4,5]
+            step2 : take two smallest elment , sum it up , push it back to the array           // o(n)  -- > for one insertion 
+            repeat it until array has one element
+             Total time complexity = o(nlogn) + o(n^2)
+-----------------------------------------------------------------------------------------------
