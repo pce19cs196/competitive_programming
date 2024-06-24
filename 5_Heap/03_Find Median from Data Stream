@@ -1,0 +1,49 @@
+https://leetcode.com/problems/find-median-from-data-stream/description/
+-------------------------------------------------------------------------------------------
+Refer : https://www.youtube.com/watch?v=itmhHWaHupI
+Time: addnum() : o(logn)
+      findmin() : o(c)
+
+Approach: Given array if numbers : [2,4,7,1,9,10]
+         Split it into equal halves : firsthalf(small) = [2,4,1]           secondhalf(large) = [7,9,10]                                
+                                       implement it as maxheap              implement it as minheap
+
+        Median  = max(small) + min(large) / 2
+                    ( 4 +  7) / 2
+
+Important observations:
+At max the size difference between small and large will be 1
+Every element in small will be smaller than large
+
+class MedianFinder:
+
+    def __init__(self):
+        self.small = []   #first half , need maxheap
+        self.large = []   #second half , need minheap
+
+    def addNum(self, num: int) -> None:
+
+        heapq.heappush(self.small,-num)
+
+        if self.small and self.large and -self.small[0] > self.large[0]:
+            ele = -heapq.heappop(self.small)
+            heapq.heappush(self.large,ele)
+        
+        if len(self.small) > len(self.large) + 1:
+            ele = -heapq.heappop(self.small)
+            heapq.heappush(self.large,ele)
+        if len(self.large) > len(self.small) + 1:
+            ele = -heapq.heappop(self.large)
+            heapq.heappush(self.small,ele)
+
+
+        
+
+    def findMedian(self) -> float:
+        if len(self.small) > len(self.large):
+            return -self.small[0]
+        if len(self.large) > len(self.small):
+            return self.large[0]
+        
+        return ((-self.small[0]) + self.large[0])/2
+------------------------------------------------------------------------------------------------------------------------
