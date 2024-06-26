@@ -1,6 +1,52 @@
 https://leetcode.com/problems/top-k-frequent-elements/description/
 -------------------------------------------------------------------------------
-Approach1 : First count the frequency of the numbers using the dictionary
+Approach2 is the classical approach
+
+
+---------------------------------------------------------------------------------
+Approach1 : use dictionary to count the frequency
+           use bucket to push the items corresponding to each frequency 
+          Finally iterate through reverse ,  and push it to the ans
+Time: o(n)   +   o(n) +                                                     o(n)
+     hashmap  iterate through hashmap and store it in the bucket         iterate through the bucket
+space: o(n) +o(n)
+     hashmap bucket
+
+
+
+
+
+from collections import Counter
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        dict1 = Counter(nums)
+
+        bucket = [[] for i in range(len(nums)+1)]
+
+        for num,freq in dict1.items():
+            bucket[freq].append(num)
+        
+        ans = []
+        j = len(bucket) - 1
+
+        while len(ans) != k:
+            if bucket[j]:
+                ans.extend(bucket[j])
+            
+            j-=1
+        
+        return ans
+            
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------
+Approach2 : First count the frequency of the numbers using the dictionary
           Then use the minheap data structure in order to store the topk most frequent items
          Since order of elements is not important. So, directly return this heap
 
@@ -30,7 +76,9 @@ class Solution:
 
 
 ------------------------------------------------------------------------------------
-Approach2 : using sorting 
+
+
+Approach3 : using sorting 
       Time: o(nlogn) space: o(n)
 
 class Solution:
