@@ -1,0 +1,27 @@
+https://www.geeksforgeeks.org/problems/nearly-sorted-1587115620/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+So, each element will be at most k places away from the original space
+We, can use minheap and pop when the elements in the minheap is over k.
+
+Time:o(nlogk)
+space:o(n)           +         o(k)
+     array(out of place)     (heap space)
+
+class Solution:
+    
+    #Function to return the sorted array.
+    def nearlySorted(self,a,n,k):
+        res = []
+        heap = []
+        
+        for i in a:
+            heapq.heappush(heap,i)
+            if len(heap)>k:
+                res.append(heapq.heappop(heap))
+        
+        while heap:
+            res.append(heapq.heappop(heap))
+    
+        
+        return res
+        
