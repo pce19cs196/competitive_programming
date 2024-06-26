@@ -1,0 +1,29 @@
+https://leetcode.com/problems/k-closest-points-to-origin/description/
+-----------------------------------------------------------------------------------------------------------
+Approach1: Use minheap to store k values.
+Time: o(nlogk) space: o(k)
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        ans = []
+        for i in points:
+            origindist = i[0]*i[0] + i[1]*i[1]
+            heapq.heappush(ans,(-origindist,(i[0],i[1])))
+
+            if len(ans)>k:
+                heapq.heappop(ans)
+        
+        finalans = [j for i,j in ans]
+        
+        return finalans
+
+---------------------------------------------------------------------------------------------------------
+Approach2 : sort the points according to the distance , return first k point
+
+Time: o(nlogn) space: o(1)
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        points.sort(key = lambda P : P[0]**2 + P[1]**2 )
+
+        return points[:k]
