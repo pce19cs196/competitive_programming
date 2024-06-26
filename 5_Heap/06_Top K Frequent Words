@@ -1,6 +1,56 @@
 https://leetcode.com/problems/top-k-frequent-words/description/
 ----------------------------------------------------------------------------------
+Approach1: using heap (freq,word) , needs to be minheap with respect to frequency.
+                                   However, if two or more frequencies are equal then needs to be maxheap , i.e, 
+                                    minheap with respect to the frequency , maxheap with respect to the word
 
+
+Need extra class in order to deal with the maxheap on string as python doesnt support maxheap
+time :  O(nlogk) space: O(n)
+
+
+class ContraStr(str):
+    def __lt__(self, other):
+        return self.s > other.s
+
+    def __init__(self, s):
+       self.s = s
+
+
+class Solution:
+    def topKFrequent(self, words: List[str], k: int) -> List[str]:
+        dict1 = {}
+        for i in words:
+            if i not in dict1:
+                dict1[i] = 1
+            else:
+                dict1[i] +=1
+    
+        ans = []
+
+        
+
+        for word,freq in dict1.items():
+            print(word,freq)
+            heapq.heappush(ans,(freq,ContraStr(word)))
+            if len(ans)>k:
+                heapq.heappop(ans)
+        
+        finalans = []
+
+        while ans:
+            j,i= heapq.heappop(ans)
+            finalans.append(i.s)
+        
+        return finalans[::-1]
+
+
+                
+        
+
+
+
+-----------------------------------------------------------------------------------
 Approach2: Count the frequency of the words and store in the dictionary
            Sort the dictionary , value in descending order, key in ascending order
           return the first k words in the dictionary
