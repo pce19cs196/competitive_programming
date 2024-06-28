@@ -1,0 +1,38 @@
+Refer: https://www.geeksforgeeks.org/remove-duplicates-from-a-given-string/
+-------------------------------------------------------------------------------------
+In order to reduce the space taken by the dictionary, we can use a constant space and set the bit , rather than using array of 26 integers
+
+
+
+strr = list("ddfghcsmjhcfsakfhqhhhdhhddhdhdhdhi")
+setbyte = 0
+l = 0
+
+for i in range(len(strr)):
+    x = ord(strr[i]) - ord('a')
+    if(not(setbyte>>x & 1)):
+        setbyte = setbyte | 1<<x
+        strr[l] = strr[i]
+        l +=1
+
+print(strr[:l+1])
+
+
+
+--------------------------------------------------------------------------------
+class Solution:
+    def removeDuplicateLetters(self, s: str) -> str:
+        charpresent = [False for i in range(26)]
+        for i in s:
+            charpresent[ord(i) - ord('a')] = True
+        
+        ans = ''
+
+        for i in range(26):
+            if charpresent[i]:
+                ans+=chr(i+97)
+        
+        return ans
+
+
+        
