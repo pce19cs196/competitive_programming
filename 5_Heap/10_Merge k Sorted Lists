@@ -1,0 +1,33 @@
+https://leetcode.com/problems/merge-k-sorted-lists/description/
+-----------------------------------------------------------------------------
+Time: o(nlogk)
+space: o(k)
+
+Note: if we are pushing pair in heap (k1,f1) , and if k1 or f1 is user defined class then , we also need to specify the various operations that is required for comparision
+i.e,
+ListNode.__eq__ = lambda self, other: self.val == other.val            
+ListNode.__lt__ = lambda self, other: self.val < other.val
+
+
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        ListNode.__eq__ = lambda self, other: self.val == other.val            
+        ListNode.__lt__ = lambda self, other: self.val < other.val
+
+        k = len(lists)
+        heap = []
+        dummy = ListNode()
+        head = dummy
+
+        for i in lists:
+            if i:
+                heapq.heappush(heap, (i.val, i))
+
+        while heap:
+            value, node = heapq.heappop(heap)
+            head.next = node
+            if node.next:
+                heapq.heappush(heap, (node.next.val, node.next))
+            head = head.next
+
+        return dummy.next
