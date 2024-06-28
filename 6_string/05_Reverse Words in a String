@@ -1,0 +1,21 @@
+https://leetcode.com/problems/reverse-words-in-a-string/description/
+-----------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------
+Approach2:
+Time: o(n)
+space: o(n)
+
+
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        strr_list = s.split()
+        return " ".join(strr_list[::-1])
+        
