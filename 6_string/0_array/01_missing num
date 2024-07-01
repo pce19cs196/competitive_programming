@@ -1,0 +1,15 @@
+https://leetcode.com/problems/missing-number/
+--------------------------------------------------
+Time: o(n) space: o(1)
+approach: xor operation
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        n = len(nums)
+        misnum = 0
+        for i in range(n):
+            misnum = misnum^i^nums[i]
+            
+        misnum = misnum^(n)
+
+        return misnum
