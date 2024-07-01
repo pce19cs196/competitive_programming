@@ -1,0 +1,45 @@
+https://www.geeksforgeeks.org/problems/add-1-to-a-number-represented-as-linked-list/1
+----------------------------------------------------------------------------------------
+Approach: Reverse the linked list
+         add one , use carry bit, may need to create one extra node
+        Reverse back the linked list
+        Time: o(n) space: o(1)
+
+class Solution:
+    def addOne(self,head):
+        #Returns new head of linked List
+        def reverse(head):
+            prev = None
+            nextt = None
+            curr = head
+            
+            while curr:
+                nextt = curr.next
+                curr.next = prev
+                prev = curr
+                curr = nextt
+            head = prev
+            
+            return head
+        
+        head = reverse(head)
+        
+        carry = (head.data + 1)//10
+        head.data = (head.data + 1)%10
+        temp = head.next
+        prev = head
+        
+        while temp:
+            temp1 = temp.data
+            temp.data = (temp.data + carry)%10
+            carry = (temp1 + carry)//10
+            prev = temp
+            temp = temp.next
+        
+        if carry>0:
+            node = Node(carry)
+            prev.next = node
+        
+        head = reverse(head)
+        return head
+            
