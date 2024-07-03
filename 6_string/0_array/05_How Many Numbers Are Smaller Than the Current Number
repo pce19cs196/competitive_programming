@@ -1,0 +1,25 @@
+https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/description/
+-------------------------------------------------------------------------------------------------------------
+Explanation of solution 2:
+nums = 8, 1, 2, 2, 3
+
+We sort the list bcoz we don't want to keep traversing the list back and forth.
+After sorting, we get temp = 1, 2, 2, 3, 8
+We traverse temp list. If we find unique element, we know all the previous elements have been recorded.
+So we add this unique element to the dictionary with index i as value.
+If duplicate element is encountered, we don't add it and don't update the value in dictionary.
+After the dictionary is constructed, we create output after doing O(1) lookup in dictionary for nums[i]
+
+Time: o(nlogn) space: o(N)
+
+def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
+	temp = sorted(nums)
+	mapping = {}
+	result = []
+	for i in range(len(temp)):
+		if temp[i] not in mapping:
+			mapping[temp[i]] = i
+	for i in range(len(nums)):
+		result.append(mapping[nums[i]])
+	return result
+----------------------------------------------------------------------------
