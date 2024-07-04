@@ -1,0 +1,31 @@
+https://leetcode.com/problems/majority-element-ii/description/
+------------------------------------------------------------------------------
+Idea: https://leetcode.com/problems/majority-element-ii/solutions/63520/boyer-moore-majority-vote-algorithm-and-my-elaboration/
+Time: o(n) , space: o(1)
+Note: majority1 and majority2 needs to intialized with different numbers since if we intialize it with the same number, then both count1 and count2 will be incremented
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        majority1 = -1
+        majority2 = 0
+        count1 = 0
+        count2 = 0
+
+        for i in nums:
+            if majority1 == i:
+                count1 +=1
+            elif majority2 == i:
+                count2 +=1
+            elif count1 == 0:
+                majority1 = i
+                count1 = 1
+            elif count2 ==0:
+                majority2 = i
+                count2 = 1
+            else:
+                count1 -=1
+                count2 -=1
+        
+        ans = [i for i in (majority1,majority2) if nums.count(i)>n//3]
+        return ans
