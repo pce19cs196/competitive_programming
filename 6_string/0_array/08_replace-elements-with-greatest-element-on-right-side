@@ -1,0 +1,20 @@
+https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/
+------------------------------------------------------------------------------------------------------------------
+Approach: maintain a maxelement from the end of array
+Time: o(n) space: o(1)
+
+
+
+class Solution:
+    def replaceElements(self, arr: List[int]) -> List[int]:
+        ans = [-1 for _ in range(len(arr))]
+        currmax = -1
+
+        for i in range(len(arr)-1,-1,-1):
+            ans[i] = currmax
+            if arr[i] > currmax:
+                currmax = arr[i]
+            
+                
+        
+        return ans
