@@ -1,0 +1,10 @@
+https://leetcode.com/problems/move-zeroes/description/
+-------------------------------------------------------------------------
+Time: o(n) space: o(1)
+
+Note:  we need to maintain the relative order. So, it needs to stable algorithm. So, we can't make long jumps as we did in the case of sort the array by parity.
+
+Sol: https://leetcode.com/problems/move-zeroes/solutions/172432/the-easiest-but-unusual-snowball-java-solution-beats-100-o-n-clear-explanation/
+
+Time: o(n) space: o(1)
+
