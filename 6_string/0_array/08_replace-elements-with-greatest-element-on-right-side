@@ -4,7 +4,6 @@ Approach: maintain a maxelement from the end of array
 Time: o(n) space: o(1)
 
 
-
 class Solution:
     def replaceElements(self, arr: List[int]) -> List[int]:
         ans = [-1 for _ in range(len(arr))]
@@ -14,7 +13,17 @@ class Solution:
             ans[i] = currmax
             if arr[i] > currmax:
                 currmax = arr[i]
-            
-                
         
         return ans
+-------------------------------------------------------------------------------------
+Without making extra array
+
+ public int[] replaceElements2(int[] A) {
+        int mx = -1, n = A.length, a;
+        for (int i = n - 1; i >= 0; --i) {
+            a = A[i];
+            A[i] = mx;
+            mx = Math.max(mx, a);
+        }
+        return A;
+    }
