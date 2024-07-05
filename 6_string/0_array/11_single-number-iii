@@ -1,0 +1,23 @@
+https://leetcode.com/problems/single-number-iii/description/
+------------------------------------------------------------------------------------------------
+approach : https://leetcode.com/problems/single-number-iii/solutions/68900/accepted-c-java-o-n-time-o-1-space-easy-solution-with-detail-explanations/
+
+time: o(n) space: o(1)
+
+  class Solution:
+    def singleNumber(self, nums: List[int]) -> List[int]:
+        xor = 0
+        for i in nums:
+            xor = xor^i
+        
+        xor = xor & (-xor) #find the position of first set bit from the rightmost side
+
+        ans = [0,0]
+
+        for i in nums:
+            if i&xor!=0:
+                ans[0] ^=i
+            else:
+                ans[1] ^=i
+        
+        return ans
