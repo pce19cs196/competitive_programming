@@ -1,0 +1,8 @@
+https://leetcode.ca/all/186.html
+----------------------------------------------------------------------------------
+sol : https://leetcode.ca/2016-06-03-186-Reverse-Words-in-a-String-II/
+Approach :step 1: reverse each of the individual words .
+          step2 : reverse the whole string
+
+          Time: o(n)
+          space: o(1)
