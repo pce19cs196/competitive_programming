@@ -1,0 +1,15 @@
+https://leetcode.com/problems/create-target-array-in-the-given-order/description/
+--------------------------------------------------------------------------------------
+Approach: https://leetcode.com/problems/create-target-array-in-the-given-order/solutions/1021340/python-using-insert-and-without-insert-very-easy/
+Time: o(n^2) space: o(1)
+
+class Solution:
+    def createTargetArray(self, nums: List[int], index: List[int]) -> List[int]:
+        ans = []
+
+        for n,i in zip(nums,index):
+            # ans.insert(i,n)
+            ans[i:i] = [n]
+
+        return ans
+        
