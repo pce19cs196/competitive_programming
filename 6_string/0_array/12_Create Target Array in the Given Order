@@ -13,3 +13,5 @@ class Solution:
 
         return ans
         
+-------------------------------------------------------------------------------------------
+idea : https://leetcode.com/problems/create-target-array-in-the-given-order/solutions/549583/O(nlogn)-based-on-%22smaller-elements-after-self%22./comments/481680
