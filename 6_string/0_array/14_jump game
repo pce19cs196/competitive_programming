@@ -1,0 +1,30 @@
+https://leetcode.com/problems/jump-game/description/
+--------------------------------------------------------------------
+Time: o(n) space: o(1)
+
+Approach : greedy , start from last_index - 1 , the jump should be greater than or equal to the size of count.
+          Every time the condition is satisfied , reset the count to 1
+
+
+
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        if len(nums) == 1: return True
+
+        count = 1
+        i = len(nums) - 2
+
+        while i>0:
+            if nums[i] >=count:
+                count = 1
+            else:
+                count +=1
+            
+            i -= 1
+        
+        if nums[i] >= count:
+            return True
+        
+        return False
+---------------------------------------------------------------
